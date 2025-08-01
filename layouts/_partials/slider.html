@@ -1,0 +1,98 @@
+{{/* 
+  Hero Slider Partial - Reusable image slider using Glide.js
+  
+  Usage in content front matter:
+  ---
+  slider:
+    images:
+      - url: "/img/slider1.jpg"
+        title: "Welcome to ISCI"
+        subtitle: "Building Community • Strengthening Faith • Serving Together"
+        cta_text: "Learn More"
+        cta_link: "/about-us/"
+      - url: "/img/slider2.jpg"
+        title: "Join Our Community"
+        subtitle: "Prayer Services • Educational Programs • Community Events"
+        cta_text: "Join Us"
+        cta_link: "/contact-us/"
+    autoplay: 4000
+    arrows: true
+    bullets: true
+  ---
+  
+  Or use in any template with:
+  {{ partial "slider.html" . }}
+*/}}
+
+{{- $slider := .Params.slider | default .Site.Params.slider -}}
+{{- if $slider -}}
+
+<div class="hero-slider glide" id="hero-slider" data-autoplay="{{ $slider.autoplay | default 4000 }}">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      {{- range $index, $slide := $slider.images -}}
+        <li class="glide__slide" style="background-image: url('{{ $slide.url }}')">
+          <div class="hero-content">
+            {{- if $slide.title -}}
+              <h1 class="hero-title">{{ $slide.title | markdownify }}</h1>
+            {{- end -}}
+            
+            {{- if $slide.subtitle -}}
+              <p class="hero-subtitle">{{ $slide.subtitle | markdownify }}</p>
+            {{- end -}}
+            
+            {{- if and $slide.cta_text $slide.cta_link -}}
+              <a href="{{ $slide.cta_link }}" class="hero-cta">{{ $slide.cta_text }}</a>
+            {{- end -}}
+          </div>
+        </li>
+      {{- end -}}
+    </ul>
+  </div>
+
+  {{- if $slider.arrows | default true -}}
+    <!-- Navigation Arrows -->
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<" aria-label="Previous slide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">" aria-label="Next slide">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+      </button>
+    </div>
+  {{- end -}}
+
+  {{- if $slider.bullets | default true -}}
+    <!-- Bullet Navigation -->
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+      {{- range $index, $slide := $slider.images -}}
+        <button class="glide__bullet" data-glide-dir="={{ $index }}" aria-label="Go to slide {{ add $index 1 }}"></button>
+      {{- end -}}
+    </div>
+  {{- end -}}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof Glide !== 'undefined') {
+    const slider = document.getElementById('hero-slider');
+    const autoplay = parseInt(slider.getAttribute('data-autoplay')) || 4000;
+    
+    new Glide('#hero-slider', {
+      type: 'carousel',
+      startAt: 0,
+      perView: 1,
+      autoplay: autoplay,
+      hoverpause: true,
+      animationDuration: 800,
+      animationTimingFunc: 'ease-in-out'
+    }).mount();
+  }
+});
+</script>
+
+{{- end -}}

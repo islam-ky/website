@@ -3,6 +3,26 @@ title: "Welcome to Islamic Society of Cayman Islands"
 description: "Welcome to Islamic Society of Cayman Islands"
 date: 2025-01-24T00:00:00Z
 draft: false
+slider:
+  images:
+    - url: "/img/deadpool.jpg"
+      title: "Welcome to ISCI"
+      subtitle: "Building Community • Strengthening Faith • Serving Together"
+      cta_text: "Learn More About Us"
+      cta_link: "/about-us/"
+    - url: "/img/deadpool.jpg"
+      title: "Join Our Community"
+      subtitle: "Prayer Services • Educational Programs • Community Events"
+      cta_text: "Get Involved"
+      cta_link: "/contact-us/"
+    - url: "/img/deadpool.jpg"
+      title: "Islamic Education"
+      subtitle: "Quran Study • Arabic Classes • Youth Programs"
+      cta_text: "Explore Programs"
+      cta_link: "/services-and-facilities/"
+  autoplay: 5000
+  arrows: true
+  bullets: true
 ---
 
 Assalaamu Alaikum and welcome to the Islamic Society of Cayman Islands (ISCI). We are a vibrant Muslim community dedicated to serving the spiritual, educational, and social needs of Muslims in the Cayman Islands.
