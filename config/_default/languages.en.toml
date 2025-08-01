@@ -4,64 +4,23 @@ languageDirection = "ltr"
 weight = 1
 
 title = "ISCI"
-# copyright = "Copy, _right?_ :thinking_face:"
+copyright = "© Islamic Society of Cayman Islands - All rights reserved"
 
 [params]
   dateFormat = "2 January 2006"
 
-  # mainSections = ["section1", "section2"]
-  # description = "My awesome website"
+  mainSections = ["announcements", "new-and-events", "services-and-facilities", "islam-in-cayman"]
+  description = "Islamic Society of Cayman Islands - Serving the Muslim community in the Cayman Islands"
 
 [params.author]
-  # name = "Your name here"
+  name = "Islamic Society of Cayman Islands"
   # image = "img/author.jpg"
-  # headline = "I'm only human"
-  # bio = "A little bit about you"
-  # links = [
-  #   { email = "mailto:hello@your_domain.com" },
-  #   { link = "https://link-to-some-website.com/" },
-  #   { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
-  #   { apple = "https://www.apple.com" },
-  #   { blogger = "https://username.blogspot.com/" },
-  #   { codepen = "https://codepen.io/username" },
-  #   { dev = "https://dev.to/username" },
-  #   { discord = "https://discord.gg/invitecode" },
-  #   { dribbble = "https://dribbble.com/username" },
-  #   { facebook = "https://facebook.com/username" },
-  #   { flickr = "https://www.flickr.com/photos/username/" },
-  #   { foursquare = "https://foursquare.com/username" },
-  #   { github = "https://github.com/username" },
-  #   { gitlab = "https://gitlab.com/username" },
-  #   { google = "https://www.google.com/" },
-  #   { google-scholar = "https://scholar.google.com/citations?user=user-id" },
-  #   { hashnode = "https://username.hashnode.dev" },
-  #   { instagram = "https://instagram.com/username" },
-  #   { keybase = "https://keybase.io/username" },
-  #   { kickstarter = "https://www.kickstarter.com/profile/username" },
-  #   { kofi = "https://ko-fi.com/username" },
-  #   { lastfm = "https://lastfm.com/user/username" },
-  #   { linkedin = "https://linkedin.com/in/username" },
-  #   { mastodon = "https://mastodon.instance/@username" },
-  #   { medium = "https://medium.com/username" },
-  #   { mendeley = "https://www.mendeley.com/" },
-  #   { microsoft = "https://www.microsoft.com/" },
-  #   { orcid = "https://orcid.org/userid" },
-  #   { patreon = "https://www.patreon.com/username" },
-  #   { pinterest = "https://pinterest.com/username" },
-  #   { reddit = "https://reddit.com/user/username" },
-  #   { researchgate = "https://www.researchgate.net/profile/username" },
-  #   { slack = "https://workspace.url/team/userid" },
-  #   { snapchat = "https://snapchat.com/add/username" },
-  #   { soundcloud = "https://soundcloud.com/username" },
-  #   { stack-overflow = "https://stackoverflow.com/users/userid/username" },
-  #   { steam = "https://steamcommunity.com/profiles/userid" },
-  #   { telegram = "https://t.me/username" },
-  #   { threads = "https://threads.net/@username" },
-  #   { tiktok = "https://tiktok.com/@username" },
-  #   { tumblr = "https://username.tumblr.com" },
-  #   { twitch = "https://twitch.tv/username" },
-  #   { whatsapp = "https://wa.me/phone-number" },
-  #   { x-twitter = "https://twitter.com/username" },
-  #   { youtube = "https://youtube.com/username" },
-  #   { xing = "https://xing.com/profile/username" },
-  # ]
+  headline = "Serving the Muslim community in the Cayman Islands"
+  bio = "Welcome to ISCI! We serve the Muslim community in the Cayman Islands with prayer services, educational programs, and community events. Join us in building a strong, supportive Islamic community."
+  links = [
+    { email = "mailto:info@isci.ky" },
+    { facebook = "https://www.facebook.com/islamic.society.cayman.islands" },
+    { instagram = "https://www.instagram.com/islamic.society.cayman.islands" },
+    { x-twitter = "https://www.twitter.com/islamic.society.cayman.islands" },
+    { youtube = "https://www.youtube.com/islamic.society.cayman.islands" },
+  ]

@@ -5,8 +5,6 @@ date: 2025-01-24T00:00:00Z
 draft: false
 ---
 
-# Welcome to Islamic Society of Cayman Islands
-
 Assalaamu Alaikum and welcome to the Islamic Society of Cayman Islands (ISCI). We are a vibrant Muslim community dedicated to serving the spiritual, educational, and social needs of Muslims in the Cayman Islands.
 
 ## Our Mission

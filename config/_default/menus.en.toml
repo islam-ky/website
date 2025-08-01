@@ -1,41 +1,58 @@
 # -- Main Menu --
-# The main menu is displayed in the header at the top of the page.
-# Acceptable parameters are name, pageRef, page, url, title, weight.
-#
-# The simplest menu configuration is to provide:
-#   name = The name to be displayed for this menu link
-#   pageRef = The identifier of the page or section to link to
-#
-# By default the menu is ordered alphabetically. This can be
-# overridden by providing a weight value. The menu will then be
-# ordered by weight from lowest to highest.
+# Islamic Society of Cayman Islands Menu Configuration
+# Based on the original PaperMod configuration
 
 [[main]]
-  name = "Blog"
-  pageRef = "posts"
+  name = "Home"
+  url = "/"
   weight = 10
 
 [[main]]
-  name = "Categories"
-  pageRef = "categories"
+  identifier = "about-us"
+  name = "About Us"
   weight = 20
 
 [[main]]
-  name = "Tags"
-  pageRef = "tags"
+  name = "Our Organisation and History"
+  url = "/about-us/organisation-and-history/"
+  parent = "about-us"
   weight = 30
 
 [[main]]
-  identifier = "search"
-  weight = 99
-  [main.params]
-    action = "search"
+  name = "About Our Imam"
+  url = "/about-us/our-imam/"
+  parent = "about-us"
+  weight = 40
 
 [[main]]
-  identifier = "locale"
+  name = "Services and Facilities"
+  url = "/services-and-facilities/"
+  weight = 50
+
+[[main]]
+  name = "Announcements"
+  url = "/announcements/"
+  weight = 60
+
+[[main]]
+  name = "News & Events"
+  url = "/new-and-events/"
+  weight = 70
+
+[[main]]
+  name = "Donate"
+  url = "/donate/"
+  weight = 80
+
+[[main]]
+  name = "Islam in Cayman"
+  url = "/islam-in-cayman/"
+  weight = 90
+  
+[[main]]
+  name = "Contact Us"
+  url = "/contact-us/"
   weight = 100
-  [main.params]
-    action = "locale"
 
 # -- Footer Menu --
 # The footer menu is displayed at the bottom of the page, just before
@@ -44,4 +61,3 @@
 # [[footer]]
 #   name = "Tags"
 #   pageRef = "tags"
-#   weight = 10
