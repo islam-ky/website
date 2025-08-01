@@ -2,3 +2,62 @@ baseURL: https://islam-ky.netlify.app/
 languageCode: en-us
 title: Islamic Society of Cayman Islands
 theme: ["PaperMod"]
+
+# Site settings
+enableRobotsTXT: true
+enableEmoji: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+# Main sections for homepage
+mainsections: ["blog", "events", "announcements"]
+
+# Navigation menu
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 10
+    - name: Blog
+      url: /blog/
+      weight: 20
+    - name: Events
+      url: /events/
+      weight: 30
+    - name: Announcements
+      url: /announcements/
+      weight: 40
+
+# Content types and taxonomies
+taxonomies:
+  category: categories
+  tag: tags
+  
+params:
+  env: production
+  title: Islamic Society of Cayman Islands
+  description: "Islamic Society of Cayman Islands - Serving the Muslim community in the Cayman Islands"
+  author: "Islamic Society of Cayman Islands"
+  
+  # Theme settings
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  ShowToc: true
+  
+  # Homepage info
+  homeInfoParams:
+    Title: "Islamic Society of Cayman Islands"
+    Content: >
+      Welcome to ISCI! We serve the Muslim community in the Cayman Islands with prayer services, 
+      educational programs, and community events. Join us in building a strong, supportive Islamic community.
+
+  # Social icons
+  socialIcons:
+    - name: email
+      title: Contact Us
+      url: "mailto:info@isci.ky"

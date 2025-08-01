@@ -5,7 +5,7 @@ media_folder: static/img
 public_folder: /img
 collections:
   - name: 'blog'
-    label: 'Blog'
+    label: 'Blog Posts'
     folder: 'content/blog'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
@@ -15,4 +15,46 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Author', name: 'author', widget: 'string', required: false }
+      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
+      - { label: 'Categories', name: 'categories', widget: 'list', required: false }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: 'events'
+    label: 'Events'
+    folder: 'content/events'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Event Date', name: 'eventDate', widget: 'datetime' }
+      - { label: 'Event Time', name: 'eventTime', widget: 'string', required: false, hint: 'e.g., 7:00 PM - 9:00 PM' }
+      - { label: 'Location', name: 'location', widget: 'string', required: false }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Featured Event', name: 'featured', widget: 'boolean', default: false }
+      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
+      - { label: 'Categories', name: 'categories', widget: 'list', required: false }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: 'announcements'
+    label: 'Announcements'
+    folder: 'content/announcements'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Urgent', name: 'urgent', widget: 'boolean', default: false, hint: 'Mark as urgent to highlight this announcement' }
+      - { label: 'Expiry Date', name: 'expiryDate', widget: 'datetime', required: false, hint: 'Optional: when this announcement should no longer be shown' }
+      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
+      - { label: 'Categories', name: 'categories', widget: 'list', required: false }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
       - { label: 'Body', name: 'body', widget: 'markdown' }
