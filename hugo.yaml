@@ -1,6 +1,6 @@
 baseURL: https://islam-ky.netlify.app/
 languageCode: en-us
-title: Islamic Society of Cayman Islands
+title: ISCI
 theme: ["PaperMod"]
 
 # Site settings
@@ -11,7 +11,7 @@ buildFuture: false
 buildExpired: false
 
 # Main sections for homepage
-mainsections: ["blog", "events", "announcements"]
+mainsections: ["services-and-facilities", "announcements", "islam-in-cayman",  "donate", "contact-us", "new-and-events"]
 
 # Navigation menu
 menu:
@@ -19,14 +19,26 @@ menu:
     - name: Home
       url: /
       weight: 10
-    - name: Blog
-      url: /blog/
+    - name: About Us
+      url: /about-us/
       weight: 20
-    - name: Events
-      url: /events/
+    - name: Services and Facilities
+      url: /services-and-facilities/
       weight: 30
     - name: Announcements
       url: /announcements/
+      weight: 40
+    - name: Islam in Cayman
+      url: /islam-in-cayman/
+      weight: 70
+    - name: Donate
+      url: /donate/
+      weight: 60
+    - name: Contact Us
+      url: /contact-us/
+      weight: 80
+    - name: New & Events
+      url: /new-and-events/
       weight: 40
 
 # Content types and taxonomies
@@ -61,3 +73,95 @@ params:
     - name: email
       title: Contact Us
       url: "mailto:info@isci.ky"
+    - name: facebook
+      title: Facebook
+      url: "https://www.facebook.com/islamic.society.cayman.islands"
+    - name: instagram
+      title: Instagram
+      url: "https://www.instagram.com/islamic.society.cayman.islands"
+    - name: twitter
+      title: Twitter
+      url: "https://www.twitter.com/islamic.society.cayman.islands"
+    - name: youtube
+      title: YouTube
+      url: "https://www.youtube.com/islamic.society.cayman.islands"
+    - name: linkedin
+  
+  editPost:
+    URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+
+  # label:
+  # iconSVG: '<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" fill="currentColor"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>'
+  # text: "Home"
+  # icon: icon.png
+  # iconHeight: 35
+
+  # analytics:
+  #     google:
+  #         SiteVerificationTag: "XYZabc"
+
+  assets:
+    disableHLJS: true
+  #     favicon: "<link / abs url>"
+  #     favicon16x16: "<link / abs url>"
+  #     favicon32x32: "<link / abs url>"
+  #     apple_touch_icon: "<link / abs url>"
+  #     safari_pinned_tab: "<link / abs url>"
+
+  # cover:
+  #     hidden: true # hide everywhere but not in structured data
+  #     hiddenInList: true # hide on list pages and home
+  #     hiddenInSingle: true # hide on single page
+
+  # fuseOpts:
+  #     isCaseSensitive: false
+  #     shouldSort: true
+  #     location: 0
+  #     distance: 1000
+  #     threshold: 0.4
+  #     minMatchCharLength: 0
+  #     keys: ["title", "permalink", "summary", "content"]
+
+
+
+  footer:
+    hideCopyright: false
+    text: "All rights reserved"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
+
+# privacy:
+#   vimeo:
+#     disabled: false
+#     simple: true
+
+#   twitter:
+#     disabled: false
+#     enableDNT: true
+#     simple: true
+
+#   instagram:
+#     disabled: false
+#     simple: true
+
+#   youtube:
+#     disabled: false
+#     privacyEnhanced: true
+
+services:
+  instagram:
+    disableInlineCSS: true
+  x:
+    disableInlineCSS: true
