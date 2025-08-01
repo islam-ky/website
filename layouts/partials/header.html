@@ -117,6 +117,13 @@
                     {{- end}}
                 </ul>
                 {{- end }}
+                
+                <!-- Mobile hamburger menu button -->
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </div>
         </div>
         {{- $currentPage := . }}
@@ -147,3 +154,41 @@
         </ul>
     </nav>
 </header>
+
+<script>
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('menu');
+    
+    if (mobileToggle && menu) {
+        mobileToggle.addEventListener('click', function() {
+            menu.classList.toggle('mobile-menu-open');
+            mobileToggle.classList.toggle('active');
+            
+            // Toggle aria-expanded for accessibility
+            const isExpanded = menu.classList.contains('mobile-menu-open');
+            mobileToggle.setAttribute('aria-expanded', isExpanded);
+        });
+        
+        // Close menu when clicking on a menu item (for mobile)
+        const menuItems = menu.querySelectorAll('a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                menu.classList.remove('mobile-menu-open');
+                mobileToggle.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!menu.contains(event.target) && !mobileToggle.contains(event.target)) {
+                menu.classList.remove('mobile-menu-open');
+                mobileToggle.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+});
+</script>
