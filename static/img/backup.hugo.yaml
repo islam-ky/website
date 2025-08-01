@@ -1,7 +1,7 @@
 baseURL: https://islam-ky.netlify.app/
 languageCode: en-us
 title: ISCI
-theme: ["PaperMod"]
+# theme: ["PaperMod"]
 
 # Site settings
 enableRobotsTXT: true
@@ -67,6 +67,13 @@ params:
     Content: >
       Welcome to ISCI! We serve the Muslim community in the Cayman Islands with prayer services, 
       educational programs, and community events. Join us in building a strong, supportive Islamic community.
+  
+  # Hero section
+  hero:
+    enable: true
+    image: "/img/hero-background.jpg" # Place your image in static/img/
+    title: "Islamic Society of Cayman Islands"
+    subtitle: "Building Community • Strengthening Faith • Serving Together"
 
   # Social icons
   socialIcons:
