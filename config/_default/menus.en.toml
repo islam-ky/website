@@ -25,9 +25,51 @@
   weight = 40
 
 [[main]]
+  identifier = "services-and-facilities"
   name = "Services and Facilities"
-  url = "/services-and-facilities/"
   weight = 50
+
+[[main]]
+  name = "Masjid Activities"
+  url = "/services-and-facilities/masjid-activities/"
+  parent = "services-and-facilities"
+  weight = 51
+
+[[main]]
+  name = "Daily Salaah"
+  url = "/services-and-facilities/daily-salaah/"
+  parent = "services-and-facilities"
+  weight = 52
+
+[[main]]
+  name = "Islam Classes for Children"
+  url = "/services-and-facilities/islam-classes-for-children/"
+  parent = "services-and-facilities"
+  weight = 53
+
+[[main]]
+  name = "Daily Lectures"
+  url = "/services-and-facilities/daily-lectures/"
+  parent = "services-and-facilities"
+  weight = 54
+
+[[main]]
+  name = "Sisters Learning Circle"
+  url = "/services-and-facilities/sisters-learning-circle/"
+  parent = "services-and-facilities"
+  weight = 55
+
+[[main]]
+  name = "Masjid Services"
+  url = "/services-and-facilities/masjid-services/"
+  parent = "services-and-facilities"
+  weight = 56
+
+[[main]]
+  name = "Ramadhan Programme"
+  url = "/services-and-facilities/ramadhan-programme/"
+  parent = "services-and-facilities"
+  weight = 57
 
 [[main]]
   name = "Announcements"
