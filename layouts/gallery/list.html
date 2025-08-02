@@ -1,0 +1,275 @@
+{{ define "main" }}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  
+  {{/* Gallery Header */}}
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      {{ .Title }}
+    </h1>
+    {{- if .Params.gallery.description -}}
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        {{ .Params.gallery.description }}
+      </p>
+    {{- end -}}
+  </div>
+
+  {{/* Category Filter Buttons */}}
+  <div class="flex flex-wrap justify-center gap-3 mb-8">
+    <button class="gallery-filter-btn active bg-primary-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-primary-700" data-filter="all">
+      All Photos
+    </button>
+    {{- range .Params.gallery.categories -}}
+      <button class="gallery-filter-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300 dark:hover:bg-gray-600" data-filter="{{ .slug }}">
+        {{ .name }}
+      </button>
+    {{- end -}}
+  </div>
+
+  {{/* Gallery Grid */}}
+  <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    {{- range .Params.gallery.categories -}}
+      {{- range .images -}}
+        <div class="gallery-item group cursor-pointer" data-category="{{ .category }}" data-src="{{ .src }}" data-caption="{{ .caption }}">
+          <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <div class="aspect-w-4 aspect-h-3">
+              <img 
+                src="{{ .src }}"
+                alt="{{ .alt }}"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            {{- if .caption -}}
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-3">
+                <p class="text-white text-sm font-medium">{{ .caption }}</p>
+              </div>
+            {{- end -}}
+          </div>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+
+  {{/* Empty State */}}
+  <div id="no-results" class="hidden text-center py-12">
+    <div class="text-gray-400 dark:text-gray-500">
+      <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      <p class="text-xl">No images found in this category</p>
+    </div>
+  </div>
+
+  {{/* Individual Albums */}}
+  {{- $albums := where .Site.RegularPages "Type" "gallery" -}}
+  {{- $albums := where $albums "Params.album" "!=" nil -}}
+  {{- if $albums -}}
+    <div class="mt-16 mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 text-center mb-8">Featured Albums</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{- range first 6 $albums -}}
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <a href="{{ .Permalink }}" class="block">
+              {{- if .Params.album.cover_image -}}
+                <div class="aspect-w-4 aspect-h-3 rounded-t-lg overflow-hidden">
+                  <img 
+                    src="{{ .Params.album.cover_image }}"
+                    alt="{{ .Params.album.title | default .Title }}"
+                    class="w-full h-full object-cover"
+                    onload="this.classList.add('loaded'); this.parentElement.classList.add('image-loaded');"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <div class="hidden absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                    <div class="text-gray-400 dark:text-gray-500 text-center">
+                      <svg class="w-8 h-8 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                      </svg>
+                      <p class="text-xs">No image</p>
+                    </div>
+                  </div>
+                </div>
+              {{- end -}}
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                  {{ .Params.album.title | default .Title }}
+                </h3>
+                {{- if .Params.album.description -}}
+                  <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-3">
+                    {{ .Params.album.description }}
+                  </p>
+                {{- end -}}
+                <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                  <span>{{ len .Params.album.images }} photos</span>
+                  <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {{- end -}}
+      </div>
+      
+      {{- if gt (len $albums) 6 -}}
+        <div class="text-center mt-8">
+          <a href="#all-albums" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+            View All Albums
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      {{- end -}}
+    </div>
+  {{- end -}}
+
+  {{/* Content */}}
+  <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mt-16">
+    {{ .Content }}
+  </div>
+</div>
+
+{{/* Lightbox Modal */}}
+<div id="lightbox" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black bg-opacity-90" id="lightbox-backdrop"></div>
+  <div class="relative h-full flex items-center justify-center p-4">
+    {{/* Close Button */}}
+    <button id="lightbox-close" class="absolute top-4 right-4 text-white hover:text-gray-300 z-10">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    
+    {{/* Navigation Arrows */}}
+    <button id="lightbox-prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    
+    <button id="lightbox-next" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    
+    {{/* Image Container */}}
+    <div class="w-full h-full flex flex-col items-center justify-center">
+      <img id="lightbox-image" src="" alt="" class="h-full w-auto object-contain" />
+      <div id="lightbox-caption" class="text-white text-center mt-4 text-lg max-w-2xl px-4"></div>
+    </div>
+  </div>
+</div>
+
+{{/* Gallery JavaScript */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const noResults = document.getElementById('no-results');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxBackdrop = document.getElementById('lightbox-backdrop');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  
+  let currentImages = [];
+  let currentIndex = 0;
+
+  // Filter functionality
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active', 'bg-primary-600', 'text-white'));
+      filterBtns.forEach(b => b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300'));
+      btn.classList.add('active', 'bg-primary-600', 'text-white');
+      btn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+      
+      // Filter images
+      let visibleCount = 0;
+      galleryItems.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no results message
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  });
+
+  // Lightbox functionality
+  function updateCurrentImages() {
+    const activeFilter = document.querySelector('.gallery-filter-btn.active').dataset.filter;
+    currentImages = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none' && (activeFilter === 'all' || item.dataset.category === activeFilter)
+    );
+  }
+
+  function openLightbox(index) {
+    updateCurrentImages();
+    currentIndex = index;
+    const item = currentImages[currentIndex];
+    lightboxImage.src = item.dataset.src;
+    lightboxImage.alt = item.querySelector('img').alt;
+    lightboxCaption.textContent = item.dataset.caption;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function showNext() {
+    if (currentIndex < currentImages.length - 1) {
+      openLightbox(currentIndex + 1);
+    }
+  }
+
+  function showPrev() {
+    if (currentIndex > 0) {
+      openLightbox(currentIndex - 1);
+    }
+  }
+
+  // Event listeners
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      updateCurrentImages();
+      const itemIndex = currentImages.indexOf(item);
+      if (itemIndex !== -1) {
+        openLightbox(itemIndex);
+      }
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+  lightboxNext.addEventListener('click', showNext);
+  lightboxPrev.addEventListener('click', showPrev);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('hidden')) {
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          showPrev();
+          break;
+        case 'ArrowRight':
+          showNext();
+          break;
+      }
+    }
+  });
+});
+</script>
+{{ end }}
