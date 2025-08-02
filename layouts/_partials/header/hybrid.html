@@ -174,13 +174,13 @@
         </div>
       </label>
       {{/* Basic menu */}}
-      <ul class="hidden list-none flex-row text-end sm:flex text-sm">
+      <ul class="hidden list-none flex-row text-end sm:flex text-sm items-center whitespace-nowrap">
         {{ if .Site.Menus.main }}
           {{ range .Site.Menus.main }}
             {{ if and (eq .Params.action "locale") (or (not page.IsTranslated) (not hugo.IsMultilingual)) }}
               {{ continue }}
             {{ end }}
-            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0 {{ if .HasChildren }}relative{{ end }}">
+            <li class="group mb-1 sm:mb-0 sm:me-6 sm:last:me-0 whitespace-nowrap {{ if .HasChildren }}relative{{ end }}" style="margin-right: 0.8rem;">
               {{ if eq .Params.action "search" }}
                 {{ $.Scratch.Add "searchCount" 1 }}
                 {{ if $.Site.Params.enableSearch | default false }}
@@ -196,7 +196,7 @@
                       </span>
                     {{- end -}}{{- if .Params.showName | default true -}}
                       <span
-                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2 whitespace-nowrap"
                         >{{ .Name | markdownify | emojify }}</span
                       >
                     {{ end }}
@@ -218,7 +218,7 @@
                     {{- end -}}
                     {{- if .Params.showName | default true -}}
                       <span
-                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2 whitespace-nowrap"
                         >{{ .Name | markdownify | emojify }}</span
                       >
                     {{ end }}
@@ -232,7 +232,7 @@
                     {{- end -}}
                     {{- if .Params.showName | default true -}}
                       <span
-                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2 whitespace-nowrap"
                         >{{ .Name | markdownify | emojify }}</span
                       >
                     {{ end }}
@@ -245,7 +245,7 @@
                 {{ if .HasChildren }}
                   {{/* Desktop dropdown parent */}}
                   <div class="desktop-dropdown-container">
-                    <button class="flex items-center space-x-1 hover-parent">
+                    <button class="flex items-center space-x-1 hover-parent whitespace-nowrap">
                       {{ with .Params.icon }}
                         <span
                           class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
@@ -254,12 +254,12 @@
                         </span>
                       {{- end -}}{{- if .Params.showName | default true -}}
                         <span
-                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2 whitespace-nowrap"
                           >{{ .Name | markdownify | emojify }}</span
                         >
                       {{ end }}
                     </button>
-                    <div class="bg-white desktop-dropdown-content absolute top-full left-0 mt-1 w-48 invisible group-hover:visible transform scale-95 group-hover:scale-100 transition-all duration-200 bg-white bg-opacity-100 dark:bg-neutral-800 dark:bg-opacity-100 rounded-md shadow-lg border border-neutral-200 dark:border-neutral-700 z-50">
+                    <div class="bg-white desktop-dropdown-content absolute top-full left-0 mt-0 w-48 invisible transform scale-95 transition-all duration-200 bg-white bg-opacity-100 dark:bg-neutral-800 dark:bg-opacity-100 rounded-md shadow-lg border border-neutral-200 dark:border-neutral-700 z-50">
                       {{ range .Children }}
                         <a
                           href="{{ .URL }}"
@@ -291,7 +291,7 @@
                       </span>
                     {{- end -}}{{- if .Params.showName | default true -}}
                       <span
-                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2 whitespace-nowrap"
                         >{{ .Name | markdownify | emojify }}</span
                       >
                     {{ end }}</a
@@ -301,7 +301,7 @@
             </li>
           {{ end }}
           {{ if and ($.Site.Params.enableSearch | default false) (eq ($.Scratch.Get "searchCount") 0) }}
-            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+            <li class="group mb-1 sm:mb-0 sm:me-6 sm:last:me-0 whitespace-nowrap">
               <button id="search-button-m1" title="{{ i18n "search.open_button_title" }}">
                 <span
                   class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
@@ -333,6 +333,35 @@ function toggleMobileDropdown(button) {
   }
 }
 
+// Desktop dropdown hover handling with delays
+let dropdownTimeouts = new Map();
+
+function showDropdown(dropdown) {
+  // Clear any pending hide timeout
+  const timeoutId = dropdownTimeouts.get(dropdown);
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+    dropdownTimeouts.delete(dropdown);
+  }
+  
+  // Show dropdown immediately
+  dropdown.classList.remove('invisible');
+  dropdown.classList.add('visible');
+  dropdown.style.transform = 'scale(1)';
+}
+
+function hideDropdown(dropdown) {
+  // Add a delay before hiding
+  const timeoutId = setTimeout(() => {
+    dropdown.classList.add('invisible');
+    dropdown.classList.remove('visible');
+    dropdown.style.transform = 'scale(0.95)';
+    dropdownTimeouts.delete(dropdown);
+  }, 150); // 150ms delay
+  
+  dropdownTimeouts.set(dropdown, timeoutId);
+}
+
 // Ensure dropdowns close when mobile menu closes
 document.addEventListener('DOMContentLoaded', function() {
   const menuController = document.getElementById('menu-controller');
@@ -353,5 +382,33 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+  
+  // Setup desktop dropdown hover handlers
+  const desktopDropdowns = document.querySelectorAll('.desktop-dropdown-container');
+  
+  desktopDropdowns.forEach(container => {
+    const dropdown = container.querySelector('.desktop-dropdown-content');
+    if (!dropdown) return;
+    
+    // Show dropdown when hovering over container
+    container.addEventListener('mouseenter', () => {
+      showDropdown(dropdown);
+    });
+    
+    // Hide dropdown when leaving container (with delay)
+    container.addEventListener('mouseleave', () => {
+      hideDropdown(dropdown);
+    });
+    
+    // Keep dropdown open when hovering over the dropdown itself
+    dropdown.addEventListener('mouseenter', () => {
+      showDropdown(dropdown);
+    });
+    
+    // Hide dropdown when leaving the dropdown
+    dropdown.addEventListener('mouseleave', () => {
+      hideDropdown(dropdown);
+    });
+  });
 });
 </script>
