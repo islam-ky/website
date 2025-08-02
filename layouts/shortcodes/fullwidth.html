@@ -1,0 +1,24 @@
+{{/*
+  Full-width shortcode - breaks content out of container constraints
+  
+  Usage:
+  {{< fullwidth >}}
+    <div style="background: #f0f0f0; padding: 2rem; text-align: center;">
+      <h2>This content spans the full width of the viewport!</h2>
+    </div>
+  {{< /fullwidth >}}
+  
+  Or with background image:
+  {{< fullwidth class="bg-cover bg-center" style="background-image: url('/img/banner.jpg'); min-height: 400px;" >}}
+    <div class="flex items-center justify-center h-full">
+      <h2 class="text-white text-4xl font-bold">Full Width Banner</h2>
+    </div>
+  {{< /fullwidth >}}
+*/}}
+
+{{- $class := .Get "class" | default "" -}}
+{{- $style := .Get "style" | default "" -}}
+
+<div class="breakout-full {{ $class }}"{{ with $style }} style="{{ . }}"{{ end }}>
+  {{ .Inner | markdownify }}
+</div>

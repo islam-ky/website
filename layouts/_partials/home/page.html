@@ -1,16 +1,28 @@
-{{/* Custom home page layout with hero slider */}}
+{{/* Custom home page layout with full-width and content-width sections */}}
 
-{{/* Include the hero slider if configured */}}
-{{ partial "slider.html" . }}
+{{/* Full-width hero slider section */}}
+{{- if .Params.slider -}}
+<div class="full-width-section">
+  {{ partial "slider.html" . }}
+</div>
+{{- end -}}
 
-<article class="prose max-w-full dark:prose-invert">
-  {{ with .Title }}
-    <header>
-      <h1>{{ . | emojify }}</h1>
-    </header>
-  {{ end }}
-  <section>{{ .Content | emojify }}</section>
-</article>
-<section>
-  {{ partial "recent-articles.html" . }}
-</section>
+{{/* Content-width sections */}}
+<div class="content-wrapper mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  
+  {{/* Main content article */}}
+  <article class="prose max-w-none dark:prose-invert py-8">
+    {{ with .Title }}
+      <header>
+        <h1>{{ . | emojify }}</h1>
+      </header>
+    {{ end }}
+    <section>{{ .Content | emojify }}</section>
+  </article>
+  
+  {{/* Recent articles section */}}
+  <section class="py-8">
+    {{ partial "recent-articles.html" . }}
+  </section>
+  
+</div>

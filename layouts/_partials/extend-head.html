@@ -60,6 +60,10 @@ header nav div a {
   min-height: 600px;
   position: relative;
   overflow: hidden;
+  /* Full-width breakout from any container */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .hero-slider .glide__slide {
@@ -197,6 +201,33 @@ header nav div a {
   transform: scale(1.2);
 }
 
+/* Full-width section utilities */
+.full-width-section {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Utility class for any element that needs to break out to full width */
+.breakout-full {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Alternative breakout for elements that should extend to container edges */
+.breakout-container {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: none;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .hero-title {
@@ -217,6 +248,11 @@ header nav div a {
   
   .glide__arrow--right {
     right: 1rem;
+  }
+  
+  .content-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 </style>
