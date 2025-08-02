@@ -27,22 +27,27 @@
 {{- $slider := .Params.slider | default .Site.Params.slider -}}
 {{- if $slider -}}
 
-<div class="hero-slider glide" id="hero-slider" data-autoplay="{{ $slider.autoplay | default 4000 }}">
+<div class="hero-slider glide parallax-container" id="hero-slider" data-autoplay="{{ $slider.autoplay | default 4000 }}">
   <div class="glide__track" data-glide-el="track">
     <ul class="glide__slides">
       {{- range $index, $slide := $slider.images -}}
-        <li class="glide__slide" style="background-image: url('{{ $slide.url }}')">
-          <div class="hero-content">
+        <li class="glide__slide animated-slide" 
+            data-slide-index="{{ $index }}"
+            data-zoom-effect="{{ $slide.zoom_effect | default "slow" }}"
+            data-text-animation="{{ $slide.text_animation | default "fadeInUp" }}"
+            data-button-delay="{{ $slide.button_delay | default "1000" }}">
+          <div class="slide-bg zoom-bg" style="background-image: url('{{ $slide.url }}')"></div>
+          <div class="hero-content animated-content">
             {{- if $slide.title -}}
-              <h1 class="hero-title">{{ $slide.title | markdownify }}</h1>
+              <h1 class="hero-title animate-text">{{ $slide.title | markdownify }}</h1>
             {{- end -}}
             
             {{- if $slide.subtitle -}}
-              <p class="hero-subtitle">{{ $slide.subtitle | markdownify }}</p>
+              <p class="hero-subtitle animate-text">{{ $slide.subtitle | markdownify }}</p>
             {{- end -}}
             
             {{- if and $slide.cta_text $slide.cta_link -}}
-              <a href="{{ $slide.cta_link }}" class="hero-cta">{{ $slide.cta_text }}</a>
+              <a href="{{ $slide.cta_link }}" class="hero-cta animate-button">{{ $slide.cta_text }}</a>
             {{- end -}}
           </div>
         </li>
@@ -82,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('hero-slider');
     const autoplay = parseInt(slider.getAttribute('data-autoplay')) || 4000;
     
-    new Glide('#hero-slider', {
+    // Initialize Glide
+    const glide = new Glide('#hero-slider', {
       type: 'carousel',
       startAt: 0,
       perView: 1,
@@ -91,6 +97,85 @@ document.addEventListener('DOMContentLoaded', function() {
       animationDuration: 800,
       animationTimingFunc: 'ease-in-out'
     }).mount();
+    
+    // Function to animate slide content
+    function animateSlide(slide) {
+      const zoomEffect = slide.getAttribute('data-zoom-effect') || 'slow';
+      const textAnimation = slide.getAttribute('data-text-animation') || 'fadeInUp';
+      const buttonDelay = parseInt(slide.getAttribute('data-button-delay')) || 1000;
+      
+      const bgElement = slide.querySelector('.zoom-bg');
+      const textElements = slide.querySelectorAll('.animate-text');
+      const buttonElement = slide.querySelector('.animate-button');
+      
+      // Reset all animations
+      bgElement.classList.remove('zoom-slow', 'zoom-fast', 'zoom-medium');
+      textElements.forEach(el => {
+        el.classList.remove('fadeInUp', 'fadeInDown', 'fadeInLeft', 'fadeInRight', 'zoomIn', 'animated');
+      });
+      if (buttonElement) {
+        buttonElement.classList.remove('fadeInUp', 'animated');
+      }
+      
+      // Start zoom animation on background
+      setTimeout(() => {
+        bgElement.classList.add(`zoom-${zoomEffect}`);
+      }, 100);
+      
+      // Start text animations with stagger
+      textElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.style.visibility = 'visible';
+          el.classList.add(textAnimation, 'animated');
+        }, 300 + (index * 200));
+      });
+      
+      // Start button animation after delay
+      if (buttonElement) {
+        setTimeout(() => {
+          buttonElement.style.visibility = 'visible';
+          buttonElement.classList.add('fadeInUp', 'animated');
+        }, buttonDelay);
+      }
+    }
+    
+    // Function to reset slide animations
+    function resetSlide(slide) {
+      const bgElement = slide.querySelector('.zoom-bg');
+      const textElements = slide.querySelectorAll('.animate-text');
+      const buttonElement = slide.querySelector('.animate-button');
+      
+      bgElement.classList.remove('zoom-slow', 'zoom-fast', 'zoom-medium');
+      textElements.forEach(el => {
+        el.style.visibility = 'hidden';
+        el.classList.remove('fadeInUp', 'fadeInDown', 'fadeInLeft', 'fadeInRight', 'zoomIn', 'animated');
+      });
+      if (buttonElement) {
+        buttonElement.style.visibility = 'hidden';
+        buttonElement.classList.remove('fadeInUp', 'animated');
+      }
+    }
+    
+    // Animate first slide on load
+    const firstSlide = slider.querySelector('.glide__slide');
+    if (firstSlide) {
+      animateSlide(firstSlide);
+    }
+    
+    // Listen for slide changes
+    glide.on('run.after', function() {
+      const currentSlide = slider.querySelector('.glide__slide--active');
+      if (currentSlide) {
+        // Reset all slides
+        const allSlides = slider.querySelectorAll('.glide__slide');
+        allSlides.forEach(slide => resetSlide(slide));
+        
+        // Animate current slide
+        setTimeout(() => {
+          animateSlide(currentSlide);
+        }, 100);
+      }
+    });
   }
 });
 </script>

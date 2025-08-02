@@ -10,39 +10,26 @@ slider:
       subtitle: "Building Community • Strengthening Faith • Serving Together"
       cta_text: "Learn More About Us"
       cta_link: "/about-us/"
+      zoom_effect: "slow"        # Options: slow, medium, fast
+      text_animation: "fadeInUp" # Options: fadeInUp, fadeInDown, fadeInLeft, fadeInRight, zoomIn
+      button_delay: 1500         # Delay in milliseconds before button appears
     - url: "/img/ISCI-Mosque-Slide-3.jpeg"
       title: "Join Our Community"
       subtitle: "Prayer Services • Educational Programs • Community Events"
       cta_text: "Get Involved"
       cta_link: "/contact-us/"
+      zoom_effect: "medium"
+      text_animation: "fadeInLeft"
+      button_delay: 1000
     - url: "/img/community.jpg"
       title: "Islamic Education"
       subtitle: "Quran Study • Arabic Classes • Youth Programs"
       cta_text: "Explore Programs"
       cta_link: "/services-and-facilities/"
+      zoom_effect: "fast"
+      text_animation: "zoomIn"
+      button_delay: 800
   autoplay: 5000
   arrows: true
   bullets: true
 ---
-
-
-
-## Our Mission
-
-To provide a welcoming space for worship, learning, and community building while promoting Islamic values and fostering understanding between different communities.
-
-## What We Offer
-
-- **Daily Prayers**: Join us for our five daily prayers
-- **Friday Prayers (Jummah)**: Weekly congregational prayers and sermons
-- **Educational Programs**: Quran study circles and Islamic education
-- **Community Events**: Regular social gatherings and cultural celebrations
-- **Support Services**: Assistance for new Muslim residents and visitors
-
-## Get Involved
-
-Whether you're a long-time resident or new to the Cayman Islands, we invite you to be part of our community. Check out our upcoming events and announcements to stay connected.
-
----
-
-*"And hold fast, all of you together, to the rope of Allah, and do not separate. And remember Allah's favor upon you when you were enemies, and He united your hearts, so you became brothers by His favor."* - Quran 3:103

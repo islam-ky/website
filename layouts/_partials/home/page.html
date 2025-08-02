@@ -9,11 +9,11 @@
 {{- end -}}
 
 
-<div class="flex sm:flex-row flex-col border">
-  <div class="h-full bg-pattern-orange p-4 md:px-24 lg:px-32 border">
+<div class="flex sm:flex-row flex-col">
+  <div class="h-full bg-pattern-orange p-4 md:px-24 lg:px-32">
     {{ partial "prayer-times.html" . }}
   </div>
-  <div class="h-[100%] w-full bg-pattern-mosqueue border" >
+  <div class="w-full bg-pattern-mosqueue" >
     <div class="px-6 h-full flex flex-col justify-center max-w-prose pt-4">
     {{ with.Title }}  
     <header>
@@ -22,7 +22,7 @@
     {{ end }}
   
 
-    <section class="text-content">
+    <section>
       The Islamic Society was established in 2000 to cater for the needs of
       the Muslim society on the Cayman Islands. As well as a place of worship,
       it is a community hub, providing education for children and adult as
@@ -35,8 +35,32 @@
   </div>
   </div>
 </div>
-</div>
 
+
+<div class="flex flex-col items-center justify-center px-6 p-4 mt-12 mb-12" >
+  
+  <div class="p-4 ">
+  <h1 class="text-4xl font-bold">Our Philosophy</h1>
+</div>
+<div class="flex flex-col sm:flex-row mt-12" style="margin-left: 10%; margin-right: 10%; gap: 20px;">
+<div class="text-center w-full">
+  <h3 style="color: rgb(233, 88, 35);" class="text-2xl">Knowledge</h3>
+  <p class="text-sm">A critical component of every Muslims journey is knowledge.</p>
+</div>
+<div class="text-center w-full">
+  <h3 style="color: #db9e30" class="text-2xl">Spirituality</h3>
+  <p class="text-sm">Ihsan was the way of our Messenger</p>
+</div>
+<div class="text-center w-full">
+  <h3 style="color: #57a68f;" class="text-2xl">Community</h3>
+  <p class="text-sm">We pray together, we break our fast together, Islam is community</p>
+</div>
+<div class="text-center w-full">
+  <h3 style="color: #db9e30;" class="text-2xl">Service</h3>
+  <p class="text-sm">Being in service to others is the duty of every Muslim</p>
+</div>
+</div>
+</div>
 
 {{/* Content-width sections */}}
 <div class="content-wrapper mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -56,5 +80,31 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
+  }
+  
+  .bg-pattern-orange {
+    position: relative;
+  }
+  
+  /* Dark overlay for both backgrounds in dark mode */
+  .dark .bg-pattern-orange::before,
+  .dark .bg-pattern-mosqueue::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75); /* Dark overlay with 75% opacity */
+    z-index: 1;
+    pointer-events: none; /* Don't block clicks */
+  }
+  
+  /* Ensure content stays above the overlay */
+  .bg-pattern-orange > *,
+  .bg-pattern-mosqueue > * {
+    position: relative;
+    z-index: 2;
   }
 </style>
