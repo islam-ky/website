@@ -30,6 +30,6 @@ slider:
       text_animation: "zoomIn"
       button_delay: 800
   autoplay: 5000
-  arrows: true
+  arrows: false
   bullets: true
 ---
