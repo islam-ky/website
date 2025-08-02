@@ -7,8 +7,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Cinzel Decorative', serif !important;
 }
 .force-full-width {
-  width: 98vw;
-  margin-left: calc(51% - 50vw);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
 /* Apply Cinzel Decorative to main navigation menu */

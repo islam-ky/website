@@ -10,10 +10,10 @@
 
 
 <div class="flex sm:flex-row flex-col">
-  <div class="h-full bg-pattern-orange p-4 md:px-24 lg:px-32">
+  <div class="h-full bg-pattern-orange sm:px-4 md:px-12 w-full">
     {{ partial "prayer-times.html" . }}
   </div>
-  <div class="w-full bg-pattern-mosqueue" >
+  <div class="w-full bg-pattern-mosqueue md:px-12 sm:px-4">
     <div class="px-6 h-full flex flex-col justify-center max-w-prose pt-4">
     {{ with.Title }}  
     <header>
@@ -31,6 +31,15 @@
       presents the true teachings of Islam as a religion of tolerance,
       cooperation and peaceful harmony amongst all people who lead a life of
       balance, justice and mutual respect.
+      
+      <div class="mt-6">
+        <a href="/about-us/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
+          Read More About Us
+          <span class="ml-2">
+            {{ partial "icon.html" "chevron-right" }}
+          </span>
+        </a>
+      </div>
     </section>
   </div>
   </div>
