@@ -1,0 +1,102 @@
+{{ define "main" }}
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  
+  <article class="relative">
+    
+    {{/* Back to Events Link */}}
+    <div class="mb-6">
+      <a href="/news-and-events/events/" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+        <span class="mr-2">
+          {{ partial "icon.html" "arrow-left" }}
+        </span>
+        Back to Events
+      </a>
+    </div>
+    
+    {{/* Event Header */}}
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">{{ .Title }}</h1>
+      
+      {{/* Event Meta Information */}}
+      <div class="flex flex-wrap gap-4 mb-6 text-neutral-600 dark:text-neutral-400">
+        {{ if .Params.eventDate }}
+          <div class="flex items-center gap-2">
+            {{ partial "icon.html" "calendar" }}
+            <span class="font-medium">{{ dateFormat "Monday, January 2, 2006" .Params.eventDate }}</span>
+          </div>
+        {{ end }}
+        
+        {{ if .Params.eventTime }}
+          <div class="flex items-center gap-2">
+            {{ partial "icon.html" "clock" }}
+            <span class="font-medium">{{ .Params.eventTime }}</span>
+          </div>
+        {{ end }}
+        
+        {{ if .Params.location }}
+          <div class="flex items-center gap-2">
+            {{ partial "icon.html" "location" }}
+            <span class="font-medium">{{ .Params.location }}</span>
+          </div>
+        {{ end }}
+      </div>
+      
+      {{/* Event Image */}}
+      {{ if .Params.image }}
+        <div class="mb-8">
+          <img 
+            src="{{ .Params.image }}" 
+            alt="{{ .Title }}"
+            class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      {{ end }}
+      
+    </header>
+    
+    {{/* Event Content */}}
+    <div class="prose prose-lg max-w-none dark:prose-invert">
+      {{ .Content }}
+    </div>
+    
+    {{/* Event Tags */}}
+    {{ if .Params.tags }}
+      <div class="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-sm font-medium text-neutral-600 dark:text-neutral-400">Tags:</span>
+          {{ range .Params.tags }}
+            <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs px-2 py-1 rounded-full">
+              {{ . }}
+            </span>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+    
+    {{/* Share Section */}}
+    <div class="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-medium text-neutral-600 dark:text-neutral-400">Share this event:</span>
+        <div class="flex gap-3">
+          <a href="https://twitter.com/intent/tweet?text={{ .Title | urlquery }}&url={{ .Permalink }}" 
+             target="_blank" 
+             rel="noopener"
+             class="text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            {{ partial "icon.html" "twitter" }}
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" 
+             target="_blank" 
+             rel="noopener"
+             class="text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            {{ partial "icon.html" "facebook" }}
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </article>
+  
+</div>
+
+{{ end }}

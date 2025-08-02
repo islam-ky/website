@@ -413,3 +413,51 @@ header nav div a {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.bg-pattern-mosqueue {
+  background-image: url('/img/bg-16.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Events List Layout Styles */
+.aspect-w-16 {
+  position: relative;
+  padding-bottom: 75%; /* 16:12 aspect ratio */
+}
+
+.aspect-w-4 {
+  position: relative;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+}
+
+.aspect-w-16 > *,
+.aspect-w-4 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Stretched link for card hover area */
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

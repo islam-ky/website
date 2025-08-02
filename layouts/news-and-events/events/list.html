@@ -1,0 +1,167 @@
+{{ define "main" }}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  
+  {{/* Page Header */}}
+  <header class="mb-12 text-center">
+    <h1 class="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">{{ .Title }}</h1>
+    {{ with .Content }}
+      <div class="prose prose-lg mx-auto dark:prose-invert">
+        {{ . }}
+      </div>
+    {{ end }}
+  </header>
+  
+  {{/* Events Grid */}}
+  {{ $events := .Pages }}
+  {{ if $events }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {{ range $events }}
+        <article class="group relative overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700 hover:shadow-lg transition-all duration-300">
+          
+          {{/* Event Layout with Optional Image */}}
+          {{ if .Params.image }}
+            {{/* Layout with Image - Vertical Stack */}}
+            <div class="flex flex-col h-full">
+              {{/* Image Section */}}
+              <div class="relative overflow-hidden h-48">
+                <img 
+                  src="{{ .Params.image }}" 
+                  alt="{{ .Title }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                  loading="lazy"
+                />
+                {{/* Hover Overlay */}}
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                  <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full p-3 mb-2 mx-auto w-fit">
+                      {{ partial "icon.html" "eye" }}
+                    </div>
+                    <span class="text-sm font-medium">View Event</span>
+                  </div>
+                </div>
+              </div>
+              
+              {{/* Content Section */}}
+              <div class="p-6 flex flex-col flex-grow">
+                {{/* Event Meta */}}
+                <div class="flex flex-wrap gap-2 mb-3 text-xs text-neutral-600 dark:text-neutral-400">
+                  {{ if .Params.eventDate }}
+                    <span class="flex items-center gap-1">
+                      {{ partial "icon.html" "calendar-day" }}
+                      {{ dateFormat "Jan 2, 2006" .Params.eventDate }}
+                    </span>
+                  {{ end }}
+                  
+                  {{ if .Params.eventTime }}
+                    <span class="flex items-center gap-1">
+                      {{ partial "icon.html" "clock" }}
+                      {{ .Params.eventTime }}
+                    </span>
+                  {{ end }}
+                </div>
+                
+                {{/* Location */}}
+                {{ if .Params.location }}
+                  <div class="flex items-center gap-1 mb-3 text-xs text-neutral-600 dark:text-neutral-400">
+                    {{ partial "icon.html" "location" }}
+                    <span class="truncate">{{ .Params.location }}</span>
+                  </div>
+                {{ end }}
+                
+                {{/* Title and Description */}}
+                <h2 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  <a href="{{ .Permalink }}" class="stretched-link">{{ .Title }}</a>
+                </h2>
+                
+                {{ if .Params.description }}
+                  <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-4 flex-grow line-clamp-3">{{ .Params.description }}</p>
+                {{ else }}
+                  <div class="text-sm text-neutral-700 dark:text-neutral-300 mb-4 flex-grow line-clamp-3">
+                    {{ .Summary }}
+                  </div>
+                {{ end }}
+                
+                {{/* Read More Link */}}
+                <div class="mt-auto">
+                  <span class="inline-flex items-center text-sm text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+                    Read More
+                    <span class="ml-1 group-hover:translate-x-1 transition-transform">
+                      {{ partial "icon.html" "chevron-right" }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+          {{ else }}
+            {{/* Layout without Image - Vertical Stack */}}
+            <div class="flex flex-col h-full p-6">
+              {{/* Event Meta */}}
+              <div class="flex flex-wrap gap-2 mb-3 text-xs text-neutral-600 dark:text-neutral-400">
+                {{ if .Params.eventDate }}
+                  <span class="flex items-center gap-1">
+                    {{ partial "icon.html" "calendar" }}
+                    {{ dateFormat "Jan 2, 2006" .Params.eventDate }}
+                  </span>
+                {{ end }}
+                
+                {{ if .Params.eventTime }}
+                  <span class="flex items-center gap-1">
+                    {{ partial "icon.html" "clock" }}
+                    {{ .Params.eventTime }}
+                  </span>
+                {{ end }}
+              </div>
+              
+              {{/* Location */}}
+              {{ if .Params.location }}
+                <div class="flex items-center gap-1 mb-3 text-xs text-neutral-600 dark:text-neutral-400">
+                  {{ partial "icon.html" "location" }}
+                  <span class="truncate">{{ .Params.location }}</span>
+                </div>
+              {{ end }}
+              
+              {{/* Title and Description */}}
+              <h2 class="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                <a href="{{ .Permalink }}" class="stretched-link">{{ .Title }}</a>
+              </h2>
+              
+              {{ if .Params.description }}
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-4 flex-grow line-clamp-3">{{ .Params.description }}</p>
+              {{ else }}
+                <div class="text-sm text-neutral-700 dark:text-neutral-300 mb-4 flex-grow line-clamp-3">
+                  {{ .Summary }}
+                </div>
+              {{ end }}
+              
+              {{/* Read More Link */}}
+              <div class="mt-auto">
+                <span class="inline-flex items-center text-sm text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+                  Read More
+                  <span class="ml-1 group-hover:translate-x-1 transition-transform">
+                    {{ partial "icon.html" "chevron-right" }}
+                  </span>
+                </span>
+              </div>
+            </div>
+          {{ end }}
+          
+        </article>
+      {{ end }}
+    </div>
+    
+  {{ else }}
+    {{/* No Events */}}
+    <div class="text-center py-12">
+      <div class="mx-auto w-24 h-24 bg-neutral-100 dark:bg-neutral-800 rounded-full flex items-center justify-center mb-4 text-4xl text-neutral-400">
+        {{ partial "icon.html" "calendar" }}
+      </div>
+      <h3 class="text-xl font-medium text-neutral-900 dark:text-neutral-100 mb-2">No Events Yet</h3>
+      <p class="text-neutral-600 dark:text-neutral-400">Check back soon for upcoming events and announcements.</p>
+    </div>
+  {{ end }}
+  
+</div>
+
+{{ end }}
