@@ -80,7 +80,7 @@
 
 [[main]]
   name = "News & Events"
-  url = "/new-and-events/"
+  url = "/news-and-events/"
   weight = 70
 
 [[main]]
