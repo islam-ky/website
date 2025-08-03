@@ -85,64 +85,33 @@
     </div>
   </div>
 </div>
-
 <style>
-/* Donation section styling using Tailwind colors */
-.donation-section {
-  @apply bg-gray-50;
-}
-
-.dark .donation-section {
-  @apply bg-gray-900;
-}
-
-.donation-title,
-.donation-card-title,
-.donation-cta-title {
-  @apply text-gray-900;
-}
-
+/* Text color variation for dark mode only */
 .dark .donation-title,
 .dark .donation-card-title,
 .dark .donation-cta-title {
-  @apply text-gray-100;
-}
-
-.donation-subtitle,
-.donation-card-text,
-.donation-cta-text {
-  @apply text-gray-600;
+  color: #ffffff; /* bright white for titles */
 }
 
 .dark .donation-subtitle,
 .dark .donation-card-text,
 .dark .donation-cta-text {
-  @apply text-gray-300;
-}
-
-.donation-quote,
-.donation-footer {
-  @apply text-gray-500;
+  color: #9ca3af; /* muted gray for content */
 }
 
 .dark .donation-quote,
 .dark .donation-footer {
-  @apply text-gray-400;
-}
-
-.donation-btn-secondary {
-  @apply border-primary-600 text-primary-600;
-}
-
-.donation-btn-secondary:hover {
-  @apply bg-primary-600 text-white;
+  color: #6b7280; /* most muted gray for fine print */
 }
 
 .dark .donation-btn-secondary {
-  @apply border-primary-400 text-primary-400;
+  border-color: #818cf8; /* lighter border in dark mode */
+  color: #818cf8; /* lighter text in dark mode */
 }
 
 .dark .donation-btn-secondary:hover {
-  @apply bg-primary-500 text-white;
+  background-color: #6366f1;
+  color: #ffffff;
 }
 </style>
+

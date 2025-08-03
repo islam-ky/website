@@ -1,0 +1,58 @@
+{{/* Recent News & Announcements Section Partial */}}
+<div class="news-section py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="news-title text-4xl font-bold mb-4">
+        Recent News & Announcements
+      </h2>
+      <p class="news-subtitle text-xl max-w-3xl mx-auto">
+        Stay updated with the latest happenings and important notices from our community
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+      {{/* Recent Announcements */}}
+      {{ partial "recent-announcements.html" . }}
+
+      {{/* Recent Events */}}
+      {{ partial "recent-events.html" . }}
+    </div>
+
+    {{/* Call-to-Action */}}
+    <div class="text-center">
+      <div class="news-cta-box rounded-lg p-8 shadow-md">
+        <h3 class="news-cta-title text-xl font-semibold mb-4">Stay Connected</h3>
+        <p class="news-cta-text mb-6">
+          Don't miss important community updates, prayer time changes, and upcoming events.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/announcements/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300">
+            View All Announcements
+          </a>
+          <a href="/news-and-events/events/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300">
+            View All Events
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+/* Text color variation for dark mode only */
+.dark .news-title {
+  color: #ffffff; /* bright white for titles */
+}
+
+.dark .news-subtitle {
+  color: #9ca3af; /* muted gray for subtitles */
+}
+
+.dark .news-cta-title {
+  color: #ffffff; /* bright white for titles */
+}
+
+.dark .news-cta-text {
+  color: #9ca3af; /* muted gray for content */
+}
+</style>
+
