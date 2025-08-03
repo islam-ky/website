@@ -46,6 +46,51 @@
 </div>
 
 
+{{/* Recent News & Announcements Section */}}
+<div class="bg-gray-50 dark:bg-gray-900 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+        Recent News & Announcements
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Stay updated with the latest happenings and important notices from our community
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+      {{/* Recent Announcements */}}
+      {{ partial "recent-announcements.html" . }}
+
+      {{/* Recent Events */}}
+      {{ partial "recent-events.html" . }}
+    </div>
+
+    {{/* Call-to-Action */}}
+    <div class="text-center">
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-md">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Stay Connected</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Don't miss important community updates, prayer time changes, and upcoming events.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/announcements/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300">
+            View All Announcements
+          </a>
+          <a href="/news-and-events/events/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300">
+            View All Events
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/* Community Support Section */}}
+<div class="py-16 px-4 sm:px-6 lg:px-8">
+  {{ partial "donation-section.html" . }}
+</div>
+
 <div class="flex flex-col items-center justify-center px-6 p-4 mt-12 mb-12" >
   
   <div class="p-4 ">

@@ -60,13 +60,20 @@ header nav div a {
   margin-right: calc(50% - 50vw);
 }
 
-/* Ensure hero content starts hidden immediately */
+/* Ensure hero content starts hidden immediately, except for first slide */
 .hero-slider .hero-title,
 .hero-slider .hero-subtitle,
 .hero-slider .hero-cta {
   opacity: 0 !important;
   transform: translateY(30px) !important;
   visibility: hidden;
+}
+
+/* Show content for first slide until JavaScript takes over */
+.hero-slider .glide__slide:first-child .hero-title,
+.hero-slider .glide__slide:first-child .hero-subtitle,
+.hero-slider .glide__slide:first-child .hero-cta {
+  visibility: visible;
 }
 
 .hero-slider .glide__slide {

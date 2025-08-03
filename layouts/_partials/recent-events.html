@@ -1,0 +1,125 @@
+{{/* Recent Events Partial */}}
+<div>
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 flex items-center">
+      <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+      </svg>
+      Upcoming Events
+    </h3>
+    <a href="/news-and-events/events/" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+      View All →
+    </a>
+  </div>
+  
+  {{- $events := where (where .Site.RegularPages "Section" "news-and-events") ".File.Dir" "in" "news-and-events/events/" -}}
+  {{- $events := where $events ".Params.draft" "ne" true -}}
+  {{- $now := now -}}
+  {{- $oneWeekAgo := $now.AddDate 0 0 -7 -}}
+  {{- $upcomingEvents := slice -}}
+  {{- $recentPastEvents := slice -}}
+  {{- $olderEvents := slice -}}
+  
+  {{/* Filter events by date range */}}
+  {{- range $events -}}
+    {{- $eventDate := .Date -}}
+    {{- if .Params.eventDate -}}
+      {{- $eventDate = time .Params.eventDate -}}
+    {{- end -}}
+    
+    {{- if gt $eventDate $now -}}
+      {{/* Future events */}}
+      {{- $upcomingEvents = $upcomingEvents | append . -}}
+    {{- else if gt $eventDate $oneWeekAgo -}}
+      {{/* Past events within last week */}}
+      {{- $recentPastEvents = $recentPastEvents | append . -}}
+    {{- else -}}
+      {{/* Older events (more than a week old) */}}
+      {{- $olderEvents = $olderEvents | append . -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{/* Show upcoming events first, then recent past events (within a week) */}}
+  {{- $displayEvents := $upcomingEvents | append $recentPastEvents -}}
+  {{- $displayEvents = $displayEvents | first 3 -}}
+  {{- $hasOlderEvents := gt (len $olderEvents) 0 -}}
+  
+  {{- if $displayEvents -}}
+    <div class="space-y-4">
+      {{- range $displayEvents -}}
+        {{- $eventDate := .Date -}}
+        {{- if .Params.eventDate -}}
+          {{- $eventDate = time .Params.eventDate -}}
+        {{- end -}}
+        {{- $isPast := lt $eventDate $now -}}
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 {{ if $isPast }}opacity-75{{ end }}">
+          {{- if $isPast -}}
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 mb-2">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+              </svg>
+              Past Event
+            </span>
+          {{- else -}}
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 mb-2">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+              </svg>
+              Upcoming
+            </span>
+          {{- end -}}
+          
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 {{ if $isPast }}text-gray-600 dark:text-gray-400{{ end }}">
+            <a href="{{ .Permalink }}" class="hover:text-primary-600">{{ .Title }}</a>
+          </h4>
+          <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 {{ if $isPast }}text-gray-500 dark:text-gray-500{{ end }}">{{ .Params.description | default (.Summary | truncate 120) }}</p>
+          <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+            <div class="flex items-center">
+              <time datetime="{{ $eventDate.Format "2006-01-02" }}" class="font-medium {{ if not $isPast }}text-green-600 dark:text-green-400{{ end }}">
+                {{ $eventDate.Format "January 2, 2006" }}
+                {{- if .Params.eventTime -}}
+                  <span class="ml-1">• {{ .Params.eventTime }}</span>
+                {{- end -}}
+              </time>
+            </div>
+            {{- if .Params.tags -}}
+              <div class="flex flex-wrap gap-1">
+                {{- range first 2 .Params.tags -}}
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full text-xs">{{ . }}</span>
+                {{- end -}}
+              </div>
+            {{- end -}}
+          </div>
+        </div>
+      {{- end -}}
+    </div>
+    
+    {{/* Show link to view older events if they exist */}}
+    {{- if $hasOlderEvents -}}
+      <div class="mt-4 text-center">
+        <a href="/news-and-events/events/" class="inline-flex items-center text-primary-600 hover:text-primary-700 text-sm font-medium">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          View Past Events ({{ len $olderEvents }} older events)
+        </a>
+      </div>
+    {{- end -}}
+  {{- else -}}
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center">
+      <p class="text-gray-500 dark:text-gray-400">No recent events to display.</p>
+      <p class="text-gray-400 dark:text-gray-500 text-sm mt-2">Check back soon for upcoming community events.</p>
+      {{- if $hasOlderEvents -}}
+        <div class="mt-4">
+          <a href="/news-and-events/events/" class="inline-flex items-center text-primary-600 hover:text-primary-700 text-sm font-medium">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            View {{ len $olderEvents }} Past Events
+          </a>
+        </div>
+      {{- end -}}
+    </div>
+  {{- end -}}
+</div>

@@ -156,11 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // Animate first slide on load
-    const firstSlide = slider.querySelector('.glide__slide');
-    if (firstSlide) {
-      animateSlide(firstSlide);
-    }
+    // Wait for Glide to be fully mounted, then animate first slide
+    setTimeout(() => {
+      const firstSlide = slider.querySelector('.glide__slide--active') || slider.querySelector('.glide__slide');
+      if (firstSlide) {
+        animateSlide(firstSlide);
+      }
+    }, 100);
     
     // Listen for slide changes
     glide.on('run.after', function() {
@@ -176,6 +178,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
       }
     });
+    
+    // Also listen for mount event to ensure first slide is animated
+    glide.on('mount.after', function() {
+      setTimeout(() => {
+        const firstSlide = slider.querySelector('.glide__slide--active') || slider.querySelector('.glide__slide');
+        if (firstSlide) {
+          animateSlide(firstSlide);
+        }
+      }, 200);
+    });
+    
+    // Final fallback - ensure first slide is always animated after a short delay
+    setTimeout(() => {
+      const activeSlide = slider.querySelector('.glide__slide--active');
+      const firstSlide = slider.querySelector('.glide__slide:first-child');
+      
+      // If no active slide or first slide is active, animate the first slide
+      if (!activeSlide || activeSlide === firstSlide) {
+        animateSlide(firstSlide);
+      }
+    }, 500);
   }
 });
 </script>
