@@ -1,9 +1,9 @@
 ---
-title: Community Updates August
-date: 2025-08-04T14:56:00.000-05:00
+title: Community Updates August 2025
+date: 2025-08-05T14:15:00.000-05:00
 description: Announcements and updates related to the community and Masjid for August
-urgent: false
-draft: true
+urgent: true
+draft: false
 ---
 1. Prayer times through August 2025
 
