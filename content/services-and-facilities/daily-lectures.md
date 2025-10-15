@@ -1,10 +1,9 @@
 ---
-title: "Daily Lectures"
-description: "Daily Lectures at the Islamic Society of Cayman Islands"
-date: 2025-01-24T00:00:00Z
+title: Daily Lectures
+description: Daily Lectures at the Islamic Society of Cayman Islands
+date: 2025-01-24T00:00:00.000Z
 draft: false
 ---
-
 Sayyiduna Abu Umamah (radiyallahu ‘anhu) reports that Rasulullah (sallallahu ‘alayhi wa sallam) said:
 
 “Whoever sets out towards the Masjid for the purpose of learning or teaching knowledge will receive the reward of a Haji whose Haj was perfect”
@@ -22,4 +21,6 @@ Saturday- Praiseworthy qualities of a believer
 Sunday- Anecdotes from history
 The Prophet said, “Does not one of you go out in the morning to the mosque to learn or recite two verses from the Book of Allah Almighty? It is better for him than two camels, three is better than three, four is better than four and whatever number of camels.” Sahih Muslim
 
-Therefore, after the Fajr salaah, one verse of the Quran will be explained so that we can understand the word of Allah. Currently Surah Yaseen(described as the heart of the Quran by Rasool saw) is being explained.
+At the special seasons of mercy like the 9 days of Dhul Hijjah and Around Ramadhan, special and relevant series take place after Magri - like the deeds which give reward of Hajj and those actions which grant shade on the Day of Judgement. 
+
+Therefore, after the Fajr salaah, one verse of the Quran will be explained so that we can understand the word of Allah. Previously, Surah Yaseen was completed followed by the 28th Juz. Then Surah Kahf was also covered in great depth.
