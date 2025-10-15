@@ -1,6 +1,6 @@
 ---
 title: Halal Food Options
-date: 2025-01-24T00:00:00.000Z
+date: 2025-10-15T17:11:00.000-05:00
 description: Halal food options in the Cayman Islands
 author: Imaam Nooh
 draft: false
