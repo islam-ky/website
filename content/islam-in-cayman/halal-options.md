@@ -1,10 +1,10 @@
 ---
-title: "Halal Food Options"
-description: "Halal food options in the Cayman Islands"
-date: 2025-01-24T00:00:00Z
+title: Halal Food Options
+date: 2025-01-24T00:00:00.000Z
+description: Halal food options in the Cayman Islands
+author: Imaam Nooh
 draft: false
 ---
-
 Allah has ordered Muslims to eat halal food just as he ordered the prophets when he says in the Quran
 
 يَـٰٓأَيُّهَا ٱلرُّسُلُ كُلُوا۟ مِنَ ٱلطَّيِّبَـٰتِ وَٱعْمَلُوا۟ صَـٰلِحًا ۖ إِنِّى بِمَا تَعْمَلُونَ عَلِيمٌۭ ٥١
@@ -19,17 +19,55 @@ As Muslims, we must ensure that what we consume is halaal. This is a very import
 
 Here are some options for halal food on the Cayman Islands:
 
-Restaurants and takeaways –
+**Restaurants and takeaways** –
 
-Southern Spice. This restaurant is partly owned by a Muslim brother and serves lunch and dinner. Be sure to confirm if halal chicken and meat is available. Bay Town Plaza West Bay Road
-Treats. This restaurant/café is also partly owned by a Muslim and provides breakfast and lunch. Remember to request halal chicken when ordering. West Bay Road West Shore Center,
-Driftwood. This restaurant is situated in the Holiday inn complex and provides lunch and dinner. Request brother Afzal (the chef) to make the necessary arrangements for halal.
-Taste of India. Situated within the masjid complex, this takeaway provides Indian cuisine in the evenings. Check that they have halal chicken available before ordering. The meat is not halal.
- 
+**Tasty Box -** The first muslim owned food truck which has promised to serve only Halal as long as the supply is available. Please confirm with chef **Afzal** or chef **Babu** before ordering.  Located on Walkers Road opposite Vampt Motor.
 
-Frozen chicken or meat-
+**Southern Spice -**  This restaurant is partly owned by a Muslim brother and serves lunch and dinner. Be sure to confirm if halal chicken and meat is available. Bay Town Plaza West Bay Road
 
-Uncle clems. Chicken can be purchase wholesale subject to availability. Whole chicken and chicken breast are the options that may be bought. This shop is locate near the airport Fosters. 68 Mary St., P.O. Box 30393, Grand Cayman,
-CostUless. Various meat is available subject to availability.
-Fosters. Various meat is available subject to availability
-Kirk Market. Various meat is available. Recommended to phone in advance to order in.
+
+**Treats -**  This restaurant/café is also partly owned by a Muslim and provides breakfast and lunch. Remember to request halal chicken when ordering. West Bay Road West Shore Center
+
+
+**Driftwood -** This restaurant is situated in the Holiday inn complex and provides breakfast, lunch and dinner. Request brother Afzal (the chef) to make the necessary arrangements for halal.
+
+**Fresh-up café** - Located in the heart of town, this quaint establishment provides breakfast and lunch. Dinner is available on the weekends from Friday night. The mutton Biryani and chicken options are Halal.
+
+**Shark Shak food truck -** Please speak to the Turkish chef in advance. Situated in Animal House parking opposite the AL Thompson.
+
+**Steam and Spice -** A Nepalese food truck trying to provide Halal options for muslims.   Located close to town.
+
+**Food Daddy -** The chicken and beef options are Halal but prior notice may need to be given. Situated in Burke plaza near town.
+
+**Please note** - As far as we are aware, **Al Kabab** and **Yallah** are not Halaal, although they may at times utilize Halaal chicken.
+
+Many hotels will provide Halaal meat options if you give 24hrs notice - especially The **Marriot**, **Kimpton** and **Ritz**.
+
+Apart from this list, some other restaurants may serve Halal without knowing so it is worth asking but be mindful of cross-contamination. 
+
+**Frozen chicken or meat -**
+
+**Uncle clems**. Chicken can be purchase wholesale subject to availability. Whole chicken and chicken breast are the options that may be bought. This shop is locate near the airport Fosters. 68 Mary St., P.O. Box 30393, Grand Cayman. The chicken is from Brazil and will either be Saadia or Purdex brand. They also have Australian mutton available in wholesale. 
+
+
+**CostUless**. Various meat is available subject to availability. Beef steaks and mince is available from Australia/New Zealand labelled Halal. Mutton cubes are also sold in packets. 
+
+
+**Fosters**. Various meat is available subject to availability. Individual chicken and chicken breast are available from Fosters and Price right. Lamb in various cuts is available from New Zealand. 
+
+Please note that not everything placed in the Halal section will be Halal as items may be moved unintentionally. 
+
+
+**Kirk Market.** Various meat is available. Recommended to phone in advance to order in. Beef from Australia is available in boneless cuts and minced.
+
+**Hurleys** - Lamb from New Zealand is available. 
+
+**Quickmart** - Regularly stock Halal chicken as well as ready made frozen kababs and meals. 
+
+**Shopright** - Halal frozen ready meals are available at various branches.
+
+The masjid also sells grass-fed beef hand-slaughtered by the Imaam. Please contact for availability.  
+
+
+
+Please note that this is not an exhaustive list by any means but many places may claim Halal and we have not been able to confirm it. We strongly encourage precaution in matters of food as it may affect our worship and prayers.
