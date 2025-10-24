@@ -9,7 +9,7 @@ album:
   description: "Some pictures from our small community from the early 2000`s when
     the Muslim population was around 50. Salaah and other activities would take
     place at a private residence including Eid "
-  category: community-events
+  category: mosque-facilities
   images:
     - src: /img/old-cayman-congragation-in-house.jpg
       caption: Isha Salaah and congregation held at a generous brothers home. This
