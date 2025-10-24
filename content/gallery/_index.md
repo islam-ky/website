@@ -1,6 +1,6 @@
 ---
 title: Photo Gallery
-date: 2025-01-24T00:00:00.000Z
+date: 2025-10-24T14:39:00.000-05:00
 description: Explore moments from our community events, educational programs,
   and mosque activities
 layout: gallery
@@ -34,6 +34,7 @@ album:
       caption: A community social BBQ
       category: community-events
       alt: BBQ
+  cover_image: /img/ISCI-Mosque-Slide-1.jpeg
 featured: true
 draft: false
 gallery:
