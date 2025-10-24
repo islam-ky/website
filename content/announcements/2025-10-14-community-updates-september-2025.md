@@ -1,9 +1,9 @@
 ---
 title: Community Updates - September 2025
-date: 2025-10-14T17:39:00.000-05:00
+date: 2025-10-24T14:38:00.000-05:00
 description: Some key events and activities in the community in September 2025
 urgent: false
-draft: true
+draft: false
 ---
 Some of the community developments and activities in September
 
