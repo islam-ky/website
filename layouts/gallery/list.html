@@ -98,7 +98,11 @@
                   </p>
                 {{- end -}}
                 <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                  <span>{{ len .Params.album.images }} photos</span>
+                  {{- if .Params.album.images -}}
+                    <span>{{ len .Params.album.images }} photos</span>
+                  {{- else -}}
+                    <span>0 photos</span>
+                  {{- end -}}
                   <span>{{ .Date.Format "Jan 2, 2006" }}</span>
                 </div>
               </div>
