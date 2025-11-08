@@ -111,6 +111,7 @@ collections:
           - { label: 'Date', name: 'date', widget: 'datetime' }
           - { label: 'Description', name: 'description', widget: 'string', hint: 'Description for the main gallery page' }
           - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'gallery' }
+          - { label: 'Featured', name: 'featured', widget: 'hidden', default: false }
           - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
           - label: 'Gallery Photos (Categorized)'
             name: 'gallery'
@@ -143,6 +144,7 @@ collections:
     folder: 'content/gallery'
     create: true
     slug: '{{slug}}'
+    filter: {field: "featured", value: true}
     editor:
       preview: false
     fields:
