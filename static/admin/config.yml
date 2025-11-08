@@ -100,50 +100,73 @@ collections:
       - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
       - { label: 'Body', name: 'body', widget: 'markdown' }
 
+  - name: 'gallery-settings'
+    label: 'Gallery Settings'
+    files:
+      - label: 'Main Gallery Page & Photos'
+        name: 'gallery-index'
+        file: 'content/gallery/_index.md'
+        fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Date', name: 'date', widget: 'datetime' }
+          - { label: 'Description', name: 'description', widget: 'string', hint: 'Description for the main gallery page' }
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'gallery' }
+          - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
+          - label: 'Gallery Photos (Categorized)'
+            name: 'gallery'
+            widget: 'object'
+            hint: 'These photos appear on the main gallery page with category filters'
+            fields:
+              - { label: 'Gallery Title', name: 'title', widget: 'string' }
+              - { label: 'Gallery Description', name: 'description', widget: 'text' }
+              - label: 'Photo Categories'
+                name: 'categories'
+                widget: 'list'
+                hint: 'Organize photos by categories with filter buttons'
+                fields:
+                  - { label: 'Category Name', name: 'name', widget: 'string', hint: 'Display name (e.g., "Community Events")' }
+                  - { label: 'Slug', name: 'slug', widget: 'string', hint: 'URL-friendly (e.g., "community-events")' }
+                  - { label: 'Description', name: 'description', widget: 'text', hint: 'Brief description of this category' }
+                  - label: 'Images'
+                    name: 'images'
+                    widget: 'list'
+                    hint: 'Photos in this category'
+                    fields:
+                      - { label: 'Image', name: 'src', widget: 'image' }
+                      - { label: 'Alt Text', name: 'alt', widget: 'string', hint: 'Describe the image for accessibility' }
+                      - { label: 'Caption', name: 'caption', widget: 'string' }
+                      - { label: 'Category Tag', name: 'category', widget: 'string', hint: 'Should match the slug above for filtering' }
+          - { label: 'Body', name: 'body', widget: 'markdown', hint: 'Additional content for the gallery page' }
+
   - name: 'gallery'
-    label: 'Photo Gallery'
+    label: 'Featured Albums'
     folder: 'content/gallery'
     create: true
     slug: '{{slug}}'
+    filter: {field: "title", pattern: "^(?!Photo Gallery$).*"}
     editor:
       preview: false
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Title', name: 'title', widget: 'string', hint: 'This will be the page title and URL slug' }
       - { label: 'Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string', hint: 'Brief description for SEO and previews' }
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'gallery' }
       - label: 'Album'
         name: 'album'
         widget: 'object'
         fields:
-          - { label: 'Album Title', name: 'title', widget: 'string' }
-          - { label: 'Album Description', name: 'description', widget: 'text' }
-          - label: 'Category'
-            name: 'category'
-            widget: 'select'
-            options:
-              - { label: 'Community Events', value: 'community-events' }
-              - { label: 'Educational Programs', value: 'educational-programs' }
-              - { label: 'Special Programs', value: 'special-programs' }
-              - { label: 'Mosque & Facilities', value: 'mosque-facilities' }
-          - { label: 'Cover Image', name: 'cover_image', widget: 'image' }
+          - { label: 'Album Title', name: 'title', widget: 'string', hint: 'Display name for the album' }
+          - { label: 'Album Description', name: 'description', widget: 'text', hint: 'Detailed description of this album' }
+          - { label: 'Cover Image', name: 'cover_image', widget: 'image', hint: 'Main thumbnail image for the album listing' }
           - label: 'Images'
             name: 'images'
             widget: 'list'
             fields:
               - { label: 'Image', name: 'src', widget: 'image' }
               - { label: 'Alt Text', name: 'alt', widget: 'string', hint: 'Describe the image for accessibility' }
-              - { label: 'Caption', name: 'caption', widget: 'string' }
-              - label: 'Category'
-                name: 'category'
-                widget: 'select'
-                options:
-                  - { label: 'Community Events', value: 'community-events' }
-                  - { label: 'Educational Programs', value: 'educational-programs' }
-                  - { label: 'Special Programs', value: 'special-programs' }
-                  - { label: 'Mosque & Facilities', value: 'mosque-facilities' }
-      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
-      - { label: 'Categories', name: 'categories', widget: 'list', required: false }
-      - { label: 'Featured', name: 'featured', widget: 'boolean', default: false }
-      - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+              - { label: 'Caption', name: 'caption', widget: 'string', required: false, hint: 'Optional caption to display with the image' }
+      - { label: 'Tags', name: 'tags', widget: 'list', required: false, hint: 'Add tags for this album (e.g., eid, community, 2023)' }
+      - { label: 'Categories', name: 'categories', widget: 'list', required: false, default: ['gallery'] }
+      - { label: 'Featured Album', name: 'featured', widget: 'boolean', default: true, hint: 'Check to highlight this album in the Featured Albums section' }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
+      - { label: 'Body', name: 'body', widget: 'markdown', hint: 'Write detailed content about this album that will appear below the photos' }

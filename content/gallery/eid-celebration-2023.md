@@ -7,21 +7,17 @@ layout: "gallery"
 album:
   title: "Eid Celebration 2023"
   description: "A beautiful celebration bringing our community together for Eid al-Fitr 2023. These photos capture the joy, unity, and blessings shared during this special occasion."
-  category: "community-events"
   cover_image: "/img/eid-celebration-2023.jpg"
   images:
     - src: "/img/eid-celebration-2023.jpg"
       alt: "Community gathering for Eid celebration"
       caption: "Our community comes together to celebrate Eid al-Fitr"
-      category: "community-events"
     - src: "/img/eid-salaah-2023.jpg"
       alt: "Eid prayer congregation"
       caption: "The blessed Eid prayer bringing the community in worship"
-      category: "community-events"
     - src: "/img/community-iftaar-2023.jpg"
       alt: "Community iftar gathering"
       caption: "Sharing the spirit of Ramadan with a community iftar"
-      category: "community-events"
 tags: 
   - eid
   - celebration

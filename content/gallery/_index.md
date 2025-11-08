@@ -4,38 +4,6 @@ date: 2025-10-24T14:39:00.000-05:00
 description: Explore moments from our community events, educational programs,
   and mosque activities
 layout: gallery
-album:
-  title: Our community early years
-  description: "Some pictures from our small community from the early 2000`s when
-    the Muslim population was around 50. Salaah and other activities would take
-    place at a private residence including Eid "
-  category: mosque-facilities
-  images:
-    - src: /img/old-cayman-congragation-in-house.jpg
-      caption: Isha Salaah and congregation held at a generous brothers home. This
-        continued for many years until the purchase of the Current Masjid
-        location
-      category: mosque-facilities
-      alt: Prayers at a home
-    - src: /img/old-community-pic.jpg
-      caption: The smaller community at the Masjid in 2012
-      category: community-events
-      alt: Community photo
-    - src: /img/school-visit-masjid.jpg
-      caption: A local school visit. Brother Abdul Ali Gordon explained the
-        presentation on the basic tenants of faith.
-      category: educational-programs
-      alt: School visit
-    - src: /img/old-eid-in-garden.jpg
-      caption: Eid Salaah in 2012 at the residence of Masjid chairman, Muzaffar Soomro
-      category: special-programs
-      alt: Eid prayer
-    - src: /img/old-community-bbq.jpg
-      caption: A community social BBQ
-      category: community-events
-      alt: BBQ
-  cover_image: /img/ISCI-Mosque-Slide-1.jpeg
-featured: true
 draft: false
 gallery:
   title: Community Moments
