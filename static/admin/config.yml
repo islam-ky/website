@@ -101,6 +101,62 @@ collections:
       - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
       - { label: 'Body', name: 'body', widget: 'markdown' }
 
+  - name: 'donate-page'
+    label: 'Donate Page'
+    files:
+      - label: 'Donate Page Content'
+        name: 'donate'
+        file: 'content/donate.md'
+        fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Description', name: 'description', widget: 'string' }
+          - { label: 'Date', name: 'date', widget: 'datetime' }
+          - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'donate' }
+          - { label: 'Subtitle', name: 'subtitle', widget: 'string' }
+          - { label: 'Inspirational Quote', name: 'quote', widget: 'text' }
+          
+          - label: 'Payment Methods'
+            name: 'payment_methods'
+            widget: 'list'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Icon', name: 'icon', widget: 'select', options: ['cash', 'bank', 'card'], default: 'cash' }
+              - { label: 'Description', name: 'description', widget: 'text' }
+              - label: 'Details'
+                name: 'details'
+                widget: 'list'
+                fields:
+                  - { label: 'Label', name: 'label', widget: 'string' }
+                  - { label: 'Value', name: 'value', widget: 'string' }
+          
+          - { label: 'Donation Uses Title', name: 'donation_uses_title', widget: 'string', default: 'How Your Donations Help' }
+          - label: 'Donation Uses'
+            name: 'donation_uses'
+            widget: 'list'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Description', name: 'description', widget: 'text' }
+          
+          - label: 'Additional Information'
+            name: 'additional_info'
+            widget: 'list'
+            required: false
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Content', name: 'content', widget: 'markdown' }
+          
+          - label: 'Contact Section'
+            name: 'contact'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string', default: 'Questions About Donations?' }
+              - { label: 'Description', name: 'description', widget: 'text' }
+              - { label: 'Phone', name: 'phone', widget: 'string' }
+              - { label: 'Email', name: 'email', widget: 'string' }
+          
+          - { label: 'Closing Message', name: 'closing_message', widget: 'text' }
+
   - name: 'gallery-settings'
     label: 'Gallery Settings'
     files:
