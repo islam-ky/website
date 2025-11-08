@@ -143,7 +143,6 @@ collections:
     folder: 'content/gallery'
     create: true
     slug: '{{slug}}'
-    filter: {field: "title", pattern: "^(?!Photo Gallery$).*"}
     editor:
       preview: false
     fields:
