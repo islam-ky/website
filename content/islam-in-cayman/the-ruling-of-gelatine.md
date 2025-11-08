@@ -3,6 +3,7 @@ title: "The Ruling of Gelatine"
 description: "The ruling of gelatine in Islam"
 date: 2025-01-24T00:00:00Z
 draft: false
+image: /img/halal-gelatine.jpg
 ---
 
 

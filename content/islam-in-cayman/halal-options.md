@@ -4,6 +4,7 @@ date: 2025-10-15T17:11:00.000-05:00
 description: Halal food options in the Cayman Islands
 author: Imaam Nooh
 draft: false
+image: /img/halal-food-options.jpg
 ---
 Allah has ordered Muslims to eat halal food just as he ordered the prophets when he says in the Quran
 

@@ -3,6 +3,7 @@ title: "Food of the People of the Book"
 description: "Food of the people of the book in Islam"
 date: 2025-01-24T00:00:00Z
 draft: false
+image: /img/people-of-the-book.jpg
 ---
 
 In the Quran 5:5 , Allah says that the food of the people of the book is permissible for Muslims to eat. People of the book in the Quran refers to the Jews and the Christians. Here, the verse is telling us that if the animal is slaughtered according to the rules mentioned in the bible and the Talmud then it is Halal for consumption. Some of these rules are as follows:
