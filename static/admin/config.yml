@@ -101,6 +101,34 @@ collections:
       - { label: 'Draft', name: 'draft', widget: 'boolean', default: true }
       - { label: 'Body', name: 'body', widget: 'markdown' }
 
+  - name: 'simple-pages'
+    label: 'Simple Pages'
+    folder: 'content/pages'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string', hint: 'Brief description for SEO' }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
+      - label: 'Menu Settings'
+        name: 'menu'
+        widget: 'object'
+        collapsed: true
+        hint: 'Configure if and how this page appears in the navigation menu'
+        fields:
+          - label: 'Main Menu'
+            name: 'main'
+            widget: 'object'
+            required: false
+            fields:
+              - { label: 'Menu Name', name: 'name', widget: 'string', required: false, hint: 'Leave empty to use page title' }
+              - { label: 'Weight (Order)', name: 'weight', widget: 'number', default: 100, hint: 'Lower numbers appear first (10, 20, 30...)' }
+              - { label: 'Parent Menu', name: 'parent', widget: 'string', required: false, hint: 'To create dropdown: use identifier like "about-us"' }
+              - { label: 'Identifier', name: 'identifier', widget: 'string', required: false, hint: 'Unique ID if this will be a dropdown parent' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
   - name: 'donate-page'
     label: 'Donate Page'
     files:
