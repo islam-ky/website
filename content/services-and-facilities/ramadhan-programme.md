@@ -3,6 +3,7 @@ title: "Ramadhan Programme"
 description: "Ramadhan Programme at the Islamic Society of Cayman Islands"
 date: 2025-01-24T00:00:00Z
 draft: false
+image: /img/community-iftaar-2023.jpg
 ---
 
 Ramadhan is the time for a believer to try to gain maximum regards and blessings from Allah. With this in mind, ISCI has had the following programmes running throughout Ramadhan

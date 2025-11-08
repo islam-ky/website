@@ -3,6 +3,7 @@ title: "Islam Classes for Children"
 description: "Islam Classes for Children at the Islamic Society of Cayman Islands"
 date: 2025-01-24T00:00:00Z
 draft: false
+image: /img/school-visit-masjid.jpg
 ---
 
 The future of Islam directly depends on how much time we invest in our children’s Islamic and intellectual growth. That is why we need to ensure our children receive Islamic education alongside their other academic studies. That is why classes are held regularly in the masjid aimed at children.

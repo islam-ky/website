@@ -3,6 +3,7 @@ title: "Daily Salaah"
 description: "Daily Salaah services at the Islamic Society of Cayman Islands"
 date: 2025-01-24T00:00:00Z
 draft: false
+image: /img/eid-salaah-2023.jpg
 ---
 
 Sayyiduna Abdullah bin Umar رضي الله عنه says that he heard our beloved Nabi ﷺ saying:

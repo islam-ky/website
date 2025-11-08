@@ -3,6 +3,7 @@ title: Masjid Services
 description: Masjid Services offered by the Islamic Society of Cayman Islands
 date: 2025-01-24T00:00:00.000Z
 draft: false
+image: /img/ISCI-Mosque-Slide-1.jpeg
 ---
 The masjid at the time of the prophet was more than just a place of worship. It was a place for the community to meet and for problems to be solved. Similarly, we aspire to create a similar environment here in The Islamic society. Here are some of the services we run:
 
