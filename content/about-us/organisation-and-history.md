@@ -1,6 +1,7 @@
 ---
 title: "About Our Organization and History"
-
+description: "Our journey from humble beginnings to a thriving Muslim community"
+image: /img/old-community-pic.jpg
 ---
 
 Over the past 20 years, there has been quite a bit of growth with regards to Muslims on the island. In December of 1981 there were very few Muslim families living here, with most of them working for BCCI. There was no established prayer and even the Jummah prayer was only held periodically.

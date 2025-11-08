@@ -1,5 +1,7 @@
 ---
 title: "Our Imam"
+description: "Meet Imam Nooh Bhana - Scholar, Teacher, and Community Leader"
+image: /img/daily-lecture-2021.jpg
 ---
 Nooh Bhana was born and raised in Bradford, England. His father Qari Ahmad is renowned for his recitation of the quraan and his mother teaches quraan from home.
 
