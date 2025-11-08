@@ -3,11 +3,11 @@
   
   {{/* Gallery Header */}}
   <div class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+    <h1 class="text-4xl font-bold mb-4">
       {{ .Title }}
     </h1>
     {{- if .Params.gallery.description -}}
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
         {{ .Params.gallery.description }}
       </p>
     {{- end -}}
@@ -19,7 +19,7 @@
       All Photos
     </button>
     {{- range .Params.gallery.categories -}}
-      <button class="gallery-filter-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gray-300 dark:hover:bg-gray-600" data-filter="{{ .slug }}">
+      <button class="gallery-filter-btn bg-secondary-100 text-secondary-900 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-secondary-200" data-filter="{{ .slug }}">
         {{ .name }}
       </button>
     {{- end -}}

@@ -7,15 +7,15 @@
     <nav class="text-sm mb-4">
       <a href="/gallery/" class="text-primary-600 hover:text-primary-700">Gallery</a>
       <span class="mx-2 text-gray-400">/</span>
-      <span class="text-gray-600 dark:text-gray-300">{{ .Title }}</span>
+      <span>{{ .Title }}</span>
     </nav>
     
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+    <h1 class="text-4xl font-bold mb-4">
       {{ .Params.album.title | default .Title }}
     </h1>
     
     {{- if .Params.album.description -}}
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6">
+      <p class="text-xl max-w-3xl mx-auto mb-6">
         {{ .Params.album.description }}
       </p>
     {{- end -}}
@@ -82,7 +82,7 @@
 
   {{/* Back to Gallery */}}
   <div class="text-center mt-12">
-    <a href="/gallery/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
+    <a href="/gallery/" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
       <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
       </svg>
