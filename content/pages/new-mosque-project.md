@@ -3,6 +3,9 @@ title: "New Mosque Project - Purchase Your House in Jannah"
 description: "Help us build the first purpose-designed Masjid in the Cayman Islands. Invest in your Hereafter through Sadaqah Jaariyah."
 date: 2025-11-01T00:00:00Z
 draft: false
+featured_image: "/img/new_mosque_building_day.png"
+images:
+  - "/img/new_mosque_building_day.png"
 menu:
   main:
     name: "New Mosque Project"
