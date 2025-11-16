@@ -122,7 +122,7 @@
   (function() {
     // Configuration
     const LAMBDA_ENDPOINT = '{{ .Site.Params.donation_api_endpoint | default "https://fgj0gw3z1g.execute-api.us-east-2.amazonaws.com/default/generateSignature" }}';
-    const CYBERSOURCE_URL = '{{ .Site.Params.cybersource_url | default "https://testsecureacceptance.cybersource.com/pay" }}';
+    const CYBERSOURCE_URL = '{{ .Site.Params.cybersource_url | default "https://secureacceptance.cybersource.com/pay" }}';
     
     // State
     let selectedCurrency = 'USD';
