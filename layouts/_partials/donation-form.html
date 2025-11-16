@@ -1,0 +1,338 @@
+{{/* Donation Form Partial
+     Usage: {{ partial "donation-form.html" . }}
+     Optional parameters can be passed via page params or directly */}}
+
+{{/* Online Donation Form */}}
+<div class="mb-16">
+  <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 md:p-12 border-2 border-primary-200 dark:border-primary-800">
+    <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-100 text-center mb-3">
+      {{ .Params.donation_form_title | default "Donate Online" }}
+    </h2>
+    <p class="text-center text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
+      {{ .Params.donation_form_description | default "Support our community with a secure online donation. All major credit and debit cards accepted." }}
+    </p>
+
+    <form id="donationForm" class="max-w-3xl mx-auto space-y-6">
+      
+      {{/* Currency Selection */}}
+      <div>
+        <label class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
+          Select Currency
+        </label>
+        <div class="grid grid-cols-2 gap-4">
+          <button type="button" class="currency-btn" data-currency="USD">
+            <span class="text-lg font-bold">USD</span>
+            <span class="text-sm">US Dollar</span>
+          </button>
+          <button type="button" class="currency-btn" data-currency="KYD">
+            <span class="text-lg font-bold">KYD</span>
+            <span class="text-sm">Cayman Dollar</span>
+          </button>
+        </div>
+      </div>
+
+      {{/* Preset Donation Amounts */}}
+      <div>
+        <label class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
+          Select or Enter Amount
+        </label>
+        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-4">
+          <button type="button" class="amount-btn" data-amount="25">$25</button>
+          <button type="button" class="amount-btn" data-amount="50">$50</button>
+          <button type="button" class="amount-btn" data-amount="100">$100</button>
+          <button type="button" class="amount-btn" data-amount="250">$250</button>
+          <button type="button" class="amount-btn" data-amount="500">$500</button>
+          <button type="button" class="amount-btn" data-amount="1000">$1000</button>
+        </div>
+        
+        {{/* Custom Amount Input */}}
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 font-semibold" id="currencySymbol">$</span>
+          <input 
+            type="number" 
+            id="customAmount" 
+            name="amount" 
+            placeholder="Enter custom amount"
+            min="1"
+            step="0.01"
+            class="w-full pl-10 pr-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+            required
+          />
+        </div>
+      </div>
+
+      {{/* Donor Information */}}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="donorName" class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+            Full Name
+          </label>
+          <input 
+            type="text" 
+            id="donorName" 
+            name="donor_name"
+            placeholder="Your name"
+            class="w-full px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+          />
+        </div>
+        <div>
+          <label for="donorEmail" class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+            Email Address
+          </label>
+          <input 
+            type="email" 
+            id="donorEmail" 
+            name="donor_email"
+            placeholder="your.email@example.com"
+            class="w-full px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+          />
+        </div>
+      </div>
+
+      {{/* Submit Button */}}
+      <div class="pt-4">
+        <button 
+          type="submit" 
+          id="submitBtn"
+          class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          <span>Proceed to Secure Payment</span>
+        </button>
+        <p class="text-xs text-center text-neutral-500 dark:text-neutral-400 mt-3">
+          Secured by CyberSource • SSL Encrypted • Visa, Mastercard, Amex accepted
+        </p>
+      </div>
+
+      {{/* Error/Loading Messages */}}
+      <div id="formMessage" class="hidden p-4 rounded-lg"></div>
+    </form>
+  </div>
+</div>
+
+{{/* CyberSource Hidden Form */}}
+<form id="cybersourceForm" method="post" action="" style="display: none;">
+  <!-- Signed fields will be dynamically added here -->
+</form>
+
+{{/* Donation Form JavaScript */}}
+<script>
+  (function() {
+    // Configuration
+    const LAMBDA_ENDPOINT = '{{ .Site.Params.donation_api_endpoint | default "https://fgj0gw3z1g.execute-api.us-east-2.amazonaws.com/default/generateSignature" }}';
+    const CYBERSOURCE_URL = '{{ .Site.Params.cybersource_url | default "https://testsecureacceptance.cybersource.com/pay" }}';
+    
+    // State
+    let selectedCurrency = 'USD';
+    let selectedAmount = null;
+    
+    // Elements - Get all elements first
+    const form = document.getElementById('donationForm');
+    const customAmountInput = document.getElementById('customAmount');
+    const currencySymbol = document.getElementById('currencySymbol');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    const cybersourceForm = document.getElementById('cybersourceForm');
+    const currencyBtns = document.querySelectorAll('.currency-btn');
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    
+    // Update amount button labels based on currency
+    function updateAmountButtons() {
+      amountBtns.forEach(btn => {
+        const amount = btn.dataset.amount;
+        const symbol = selectedCurrency === 'USD' ? '$' : 'CI$';
+        btn.innerHTML = `${symbol}${amount}`;
+      });
+    }
+    
+    // Show message
+    function showMessage(text, type = 'error') {
+      formMessage.textContent = text;
+      formMessage.className = `p-4 rounded-lg ${
+        type === 'error' 
+          ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' 
+          : type === 'loading'
+          ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
+          : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+      }`;
+      formMessage.classList.remove('hidden');
+    }
+    
+    // Hide message
+    function hideMessage() {
+      formMessage.classList.add('hidden');
+    }
+    
+    // Currency buttons event listeners
+    currencyBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        currencyBtns.forEach(b => {
+          b.classList.remove('bg-primary-100', 'border-primary-500', 'dark:bg-primary-900', 'dark:border-primary-500');
+          b.classList.add('bg-neutral-100', 'border-neutral-300', 'dark:bg-neutral-700', 'dark:border-neutral-600');
+        });
+        
+        this.classList.remove('bg-neutral-100', 'border-neutral-300', 'dark:bg-neutral-700', 'dark:border-neutral-600');
+        this.classList.add('bg-primary-100', 'border-primary-500', 'dark:bg-primary-900', 'dark:border-primary-500');
+        
+        selectedCurrency = this.dataset.currency;
+        currencySymbol.textContent = selectedCurrency === 'USD' ? '$' : 'CI$';
+        updateAmountButtons();
+      });
+    });
+    
+    // Amount buttons event listeners
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        amountBtns.forEach(b => {
+          b.classList.remove('bg-primary-600', 'text-white', 'dark:bg-primary-600');
+          b.classList.add('bg-neutral-100', 'text-neutral-700', 'dark:bg-neutral-700', 'dark:text-neutral-300');
+        });
+        
+        this.classList.remove('bg-neutral-100', 'text-neutral-700', 'dark:bg-neutral-700', 'dark:text-neutral-300');
+        this.classList.add('bg-primary-600', 'text-white', 'dark:bg-primary-600');
+        
+        selectedAmount = parseFloat(this.dataset.amount);
+        customAmountInput.value = selectedAmount;
+      });
+    });
+    
+    // Custom amount input
+    customAmountInput.addEventListener('input', function() {
+      if (this.value) {
+        amountBtns.forEach(b => {
+          b.classList.remove('bg-primary-600', 'text-white', 'dark:bg-primary-600');
+          b.classList.add('bg-neutral-100', 'text-neutral-700', 'dark:bg-neutral-700', 'dark:text-neutral-300');
+        });
+        selectedAmount = parseFloat(this.value);
+      }
+    });
+    
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      hideMessage();
+      
+      // Validate amount
+      const amount = parseFloat(customAmountInput.value);
+      if (!amount || amount <= 0) {
+        showMessage('Please enter a valid donation amount', 'error');
+        return;
+      }
+      
+      // Get form data
+      const donorName = document.getElementById('donorName').value.trim();
+      const donorEmail = document.getElementById('donorEmail').value.trim();
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Processing...</span>
+      `;
+      showMessage('Preparing secure payment...', 'loading');
+      
+      try {
+        // Prepare payload
+        const payload = {
+          amount: amount,
+          currency: selectedCurrency,
+          donor_name: donorName,
+          donor_email: donorEmail
+        };
+        
+        console.log('Sending to Lambda:', payload);
+        
+        // Call backend to get signed fields
+        const response = await fetch(LAMBDA_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to prepare payment');
+        }
+        
+        const signedFields = await response.json();
+        console.log('Received from Lambda:', signedFields);
+        
+        // Create hidden form with signed fields
+        cybersourceForm.innerHTML = '';
+        cybersourceForm.action = CYBERSOURCE_URL;
+        
+        // Add all signed fields to the form
+        for (const [key, value] of Object.entries(signedFields)) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          cybersourceForm.appendChild(input);
+        }
+        
+        // Submit to CyberSource
+        showMessage('Redirecting to secure payment page...', 'loading');
+        cybersourceForm.submit();
+        
+      } catch (error) {
+        console.error('Payment error:', error);
+        showMessage('Unable to process payment. Please try again or use an alternative payment method below.', 'error');
+        
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          <span>Proceed to Secure Payment</span>
+        `;
+      }
+    });
+    
+    // Initialize default currency (USD)
+    if (currencyBtns.length > 0) {
+      currencyBtns[0].click();
+    }
+    
+    // Add base button styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .currency-btn {
+        padding: 1rem;
+        border: 2px solid;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-weight: 600;
+      }
+      .currency-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .amount-btn {
+        padding: 0.75rem 1rem;
+        border: 2px solid transparent;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .amount-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+    `;
+    document.head.appendChild(style);
+  })();
+</script>
+
