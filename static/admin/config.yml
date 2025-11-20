@@ -187,6 +187,63 @@ collections:
           
           - { label: 'Closing Message', name: 'closing_message', widget: 'text' }
 
+  - name: 'thank-you-page'
+    label: 'Thank You Page'
+    files:
+      - label: 'Thank You Page Content'
+        name: 'thank-you'
+        file: 'content/thank-you.md'
+        fields:
+          - { label: 'Title', name: 'title', widget: 'string', hint: 'Page title for browser tab and SEO' }
+          - { label: 'Description', name: 'description', widget: 'string', hint: 'SEO description' }
+          - { label: 'Draft', name: 'draft', widget: 'boolean', default: false }
+          - { label: 'Show Date', name: 'showDate', widget: 'boolean', default: false }
+          - { label: 'Show Author', name: 'showAuthor', widget: 'boolean', default: false }
+          - { label: 'Show Reading Time', name: 'showReadingTime', widget: 'boolean', default: false }
+          - { label: 'Show Table of Contents', name: 'showTableOfContents', widget: 'boolean', default: false }
+          
+          - { label: 'Main Heading (Arabic)', name: 'main_heading', widget: 'string', default: 'جزاك الله خيرا' }
+          - { label: 'Main Heading Translation', name: 'main_heading_translation', widget: 'string', default: 'May Allah Reward You with Goodness' }
+          - { label: 'Thank You Message', name: 'thank_you_message', widget: 'text', hint: 'Main message displayed to donors' }
+          
+          - label: 'Quranic Quote'
+            name: 'quote'
+            widget: 'object'
+            fields:
+              - { label: 'Quote Text', name: 'text', widget: 'text' }
+              - { label: 'Reference', name: 'reference', widget: 'string', hint: 'e.g., Quran 2:261 or Hadith reference' }
+          
+          - { label: 'Impact Section Title', name: 'impact_title', widget: 'string', default: 'Your Impact' }
+          - { label: 'Impact Description', name: 'impact_description', widget: 'text' }
+          - label: 'Impact Points'
+            name: 'impact_points'
+            widget: 'list'
+            field: { label: 'Point', name: 'point', widget: 'string' }
+          
+          - { label: 'Next Steps Title', name: 'next_steps_title', widget: 'string', default: 'What Happens Next' }
+          - label: 'Next Steps'
+            name: 'next_steps'
+            widget: 'list'
+            fields:
+              - { label: 'Step Title', name: 'title', widget: 'string' }
+              - { label: 'Description', name: 'description', widget: 'text' }
+          
+          - { label: 'Show Contact Section', name: 'show_contact', widget: 'boolean', default: true }
+          - { label: 'Contact Message', name: 'contact_message', widget: 'text' }
+          - { label: 'Contact Phone', name: 'contact_phone', widget: 'string' }
+          - { label: 'Contact Email', name: 'contact_email', widget: 'string' }
+          
+          - { label: 'Closing Message', name: 'closing_message', widget: 'text' }
+          
+          - label: 'Call to Action Buttons'
+            name: 'cta_buttons'
+            widget: 'list'
+            fields:
+              - { label: 'Button Text', name: 'text', widget: 'string' }
+              - { label: 'URL', name: 'url', widget: 'string' }
+          
+          - { label: 'Body', name: 'body', widget: 'markdown', hint: 'Additional content (optional)' }
+
   - name: 'gallery-settings'
     label: 'Gallery Settings'
     files:
