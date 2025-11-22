@@ -176,6 +176,27 @@ collections:
               - { label: 'Title', name: 'title', widget: 'string' }
               - { label: 'Content', name: 'content', widget: 'markdown' }
           
+          - label: 'Donation Campaigns'
+            name: 'campaigns'
+            widget: 'list'
+            required: false
+            collapsed: true
+            hint: 'Create and manage donation campaigns. Only one campaign should be active at a time.'
+            fields:
+              - { label: 'Campaign Name', name: 'title', widget: 'string', hint: 'e.g., "New Mosque Construction Fund"' }
+              - { label: 'Description', name: 'description', widget: 'text', hint: 'Brief description of the campaign purpose' }
+              - { label: 'Active', name: 'active', widget: 'boolean', default: false, hint: 'Turn ON to show this campaign on the donation page. Only one should be active.' }
+              - { label: 'Campaign Goal', name: 'goal', widget: 'string', required: false, hint: 'e.g., "$50,000" - leave empty to hide progress bar' }
+              - { label: 'Amount Raised', name: 'raised', widget: 'number', default: 0, required: false, hint: 'Current amount raised (numbers only)' }
+              - { label: 'Campaign Message', name: 'message', widget: 'text', required: false, hint: 'Why this campaign is important' }
+              - label: 'Campaign Donation Amounts'
+                name: 'donation_amounts'
+                widget: 'list'
+                min: 3
+                max: 8
+                hint: 'Preset donation amounts for this campaign (3-8 amounts recommended)'
+                field: { label: 'Amount', name: 'amount', widget: 'number', value_type: 'int', min: 1 }
+          
           - label: 'Contact Section'
             name: 'contact'
             widget: 'object'

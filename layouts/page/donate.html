@@ -2,6 +2,25 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   
+  {{/* Check for Active Campaign and set donation amounts */}}
+  {{ $activeCampaign := false }}
+  {{ $donationAmounts := slice 50 100 250 500 1000 }}
+  {{ if .Params.campaigns }}
+    {{ range .Params.campaigns }}
+      {{ if eq .active true }}
+        {{ $activeCampaign = . }}
+        {{ if .donation_amounts }}
+          {{ $donationAmounts = .donation_amounts }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  
+  {{/* Override page donation amounts with campaign amounts if campaign is active */}}
+  {{ if $activeCampaign }}
+    {{ $.Scratch.Set "donation_amounts" $donationAmounts }}
+  {{ end }}
+
   {{/* Hero Section */}}
   <div class="text-center mb-12 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-2xl p-8 md:p-12">
     <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
@@ -19,10 +38,71 @@
     {{ end }}
   </div>
 
+  {{/* Active Campaign Banner */}}
+  {{ if $activeCampaign }}
+    <div class="mb-12 rounded-2xl p-8 md:p-12 shadow-xl">
+      <div class="text-center">
+        <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-6 bg-primary-100 text-primary-700">
+          🎯 Active Campaign
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          {{ $activeCampaign.title }}
+        </h2>
+        {{ if $activeCampaign.description }}
+          <p class="text-base mb-8 max-w-3xl mx-auto">
+            {{ $activeCampaign.description }}
+          </p>
+        {{ end }}
+      </div>
+
+      {{/* Progress Bar */}}
+      {{ if and $activeCampaign.goal $activeCampaign.raised }}
+        {{ $goal := replaceRE "[^0-9]" "" $activeCampaign.goal }}
+        {{ $raised := $activeCampaign.raised }}
+        {{ $goalFloat := float $goal }}
+        {{ $raisedFloat := float $raised }}
+        {{ $percentage := 0.0 }}
+        {{ if gt $goalFloat 0 }}
+          {{ $percentage = div (mul $raisedFloat 100.0) $goalFloat }}
+          {{ if gt $percentage 100.0 }}
+            {{ $percentage = 100.0 }}
+          {{ end }}
+        {{ end }}
+        
+        <div class="max-w-2xl mx-auto mb-6">
+          <div class="flex justify-between text-sm font-semibold mb-2">
+            <span>Raised: ${{ printf "%.0f" $raisedFloat }}</span>
+            <span>Goal: {{ $activeCampaign.goal }}</span>
+          </div>
+          <div class="w-full bg-neutral-200 rounded-full h-4 overflow-hidden">
+            <div class="bg-primary-600 h-full rounded-full transition-all duration-500" style="width: {{ $percentage }}%"></div>
+          </div>
+          <div class="text-center mt-2 text-sm font-medium">
+            {{ printf "%.0f" $percentage }}% of goal reached
+          </div>
+        </div>
+      {{ end }}
+
+      {{/* Campaign Message */}}
+      {{ if $activeCampaign.message }}
+        <div class="max-w-3xl mx-auto text-center mt-8">
+          <p class="text-lg italic text-primary-600 border-l-4 border-primary-500 pl-4 py-2">
+            {{ $activeCampaign.message }}
+          </p>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  {{/* Online Donation Form */}}
+  <div class="mb-16">
+    {{ partial "donation-form.html" . }}
+  </div>
+
   {{/* Payment Methods Grid */}}
   {{ if .Params.payment_methods }}
     <div class="mb-16">
-      <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-100 text-center mb-3">Payment Methods</h2>
+      <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-100 text-center mb-3">Other Payment Methods</h2>
       <p class="text-center text-neutral-600 dark:text-neutral-400 mb-10 max-w-2xl mx-auto">Choose the method that works best for you</p>
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -52,6 +52,14 @@ donation_uses:
     description: "Interfaith dialogue and community outreach"
   - title: "Youth Programs"
     description: "Activities and education for our young community members"
+campaigns:
+  - title: "New Mosque Project - Purchase Your House in Jannah"
+    description: "Help us build the first purpose-designed Masjid in the Cayman Islands. A continuous reward until the Day of Judgement - Sadaqah Jaariyah."
+    active: true
+    goal: "$1,400,000"
+    raised: 0
+    message: "\"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise.\" - Prophet Muhammad (PBUH). Help us create a lasting legacy for generations to come with spacious prayer halls, Islamic school classrooms, and a community center. Target: Move in by Ramadhan 2026."
+    donation_amounts: [100, 250, 500, 1000, 5000, 10000]
 additional_info:
   - title: "Monthly Donations"
     content: "To set up recurring monthly donations, please contact us directly. Monthly giving helps us plan and budget for our ongoing programs and facility maintenance."

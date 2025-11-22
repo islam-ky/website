@@ -1,15 +1,20 @@
 {{/* Donation Form Partial
      Usage: {{ partial "donation-form.html" . }}
-     Optional parameters can be passed via page params or directly */}}
+     Supports both flat and nested parameters from Netlify CMS */}}
+
+{{/* Check for nested params first (Netlify CMS), then flat params (backward compatibility) */}}
+{{- $form := .Params.donation_form | default dict -}}
+{{- $formTitle := $form.donation_form_title | default .Params.donation_form_title | default "Donate Online" -}}
+{{- $formDescription := $form.donation_form_description | default .Params.donation_form_description | default "Support our community with a secure online donation. All major credit and debit cards accepted." -}}
 
 {{/* Online Donation Form */}}
 <div class="mb-16">
   <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 md:p-12 border-2 border-primary-200 dark:border-primary-800">
     <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-100 text-center mb-3">
-      {{ .Params.donation_form_title | default "Donate Online" }}
+      {{ $formTitle }}
     </h2>
     <p class="text-center text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
-      {{ .Params.donation_form_description | default "Support our community with a secure online donation. All major credit and debit cards accepted." }}
+      {{ $formDescription }}
     </p>
 
     <form id="donationForm" class="max-w-3xl mx-auto space-y-6">
@@ -33,16 +38,19 @@
 
       {{/* Preset Donation Amounts */}}
       <div>
+        {{- $amountLabel := $form.amount_label | default .Params.amount_label | default "Select or Enter Amount" -}}
         <label class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">
-          Select or Enter Amount
+          {{ $amountLabel }}
         </label>
-        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-4">
-          <button type="button" class="amount-btn" data-amount="25">$25</button>
-          <button type="button" class="amount-btn" data-amount="50">$50</button>
-          <button type="button" class="amount-btn" data-amount="100">$100</button>
-          <button type="button" class="amount-btn" data-amount="250">$250</button>
-          <button type="button" class="amount-btn" data-amount="500">$500</button>
-          <button type="button" class="amount-btn" data-amount="1000">$1000</button>
+        {{- $defaultAmounts := slice 25 50 100 250 500 1000 -}}
+        {{- $campaignAmounts := .Scratch.Get "donation_amounts" -}}
+        {{- $amounts := $campaignAmounts | default ($form.donation_amounts | default (.Params.donation_amounts | default $defaultAmounts)) -}}
+        {{- $gridCols := len $amounts | default 6 -}}
+        {{- $gridClass := cond (le $gridCols 3) "grid-cols-3" (cond (le $gridCols 4) "grid-cols-3 sm:grid-cols-4" "grid-cols-3 sm:grid-cols-6") -}}
+        <div class="grid {{ $gridClass }} gap-3 mb-4">
+          {{- range $amounts -}}
+          <button type="button" class="amount-btn" data-amount="{{ . }}">${{ . }}</button>
+          {{- end -}}
         </div>
         
         {{/* Custom Amount Input */}}

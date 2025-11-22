@@ -1,4 +1,7 @@
 {{/* Donate Shortcode
-     Usage in markdown: {{< donate >}} */}}
+     Usage in markdown: {{< donate >}}
+     Supports both flat params and nested params from Netlify CMS */}}
+
+{{ partial "donation-section.html" .Page }}
 {{ partial "donation-form.html" .Page }}
 
