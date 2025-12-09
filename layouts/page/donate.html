@@ -71,8 +71,8 @@
         
         <div class="max-w-2xl mx-auto mb-6">
           <div class="flex justify-between text-sm font-semibold mb-2">
-            <span>Raised: ${{ printf "%.0f" $raisedFloat }}</span>
-            <span>Goal: {{ $activeCampaign.goal }}</span>
+            <span>Raised: $<span data-amount="{{ printf "%.0f" $raisedFloat }}">{{ printf "%.0f" $raisedFloat }}</span></span>
+            <span>Goal: $<span data-amount="{{ printf "%.0f" $goalFloat }}">{{ printf "%.0f" $goalFloat }}</span></span>
           </div>
           <div class="w-full bg-neutral-200 rounded-full h-4 overflow-hidden">
             <div class="bg-primary-600 h-full rounded-full transition-all duration-500" style="width: {{ $percentage }}%"></div>
@@ -243,6 +243,17 @@
   {{ end }}
 
 </div>
+
+<script>
+// Format currency amounts with commas
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[data-amount]').forEach(function(el) {
+    const amount = parseFloat(el.getAttribute('data-amount'));
+    const formatted = amount.toLocaleString('en-US');
+    el.textContent = formatted;
+  });
+});
+</script>
 
 {{ end }}
 

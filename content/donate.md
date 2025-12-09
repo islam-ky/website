@@ -56,8 +56,8 @@ campaigns:
   - title: "New Mosque Project - Purchase Your House in Jannah"
     description: "Help us build the first purpose-designed Masjid in the Cayman Islands. A continuous reward until the Day of Judgement - Sadaqah Jaariyah."
     active: true
-    goal: "$1,400,000"
-    raised: 0
+    goal: 500000
+    raised: 200000
     message: "\"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise.\" - Prophet Muhammad (PBUH). Help us create a lasting legacy for generations to come with spacious prayer halls, Islamic school classrooms, and a community center. Target: Move in by Ramadhan 2026."
     donation_amounts: [100, 250, 500, 1000, 5000, 10000]
 additional_info:
