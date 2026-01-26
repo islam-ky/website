@@ -97,14 +97,29 @@ The Masjid will also be located at a busy junction, ensuring many more eyes will
 
 We hope to move into the new location by **Ramadhan of 2026**. That is why there is an urgent need to raise the funds and begin renovation work as soon as possible.
 
-| **Project Component**       | **Cost (KYD)**    | **Cost (USD)**    |
-| --------------------------- | ----------------- | ----------------- |
-| **New Masjid Building**     | 1,000,000         | 1,200,000         |
-| **Renovation Work**         | 80,000            | 100,000           |
-| **Resurfacing the Parking** | 50,000            | 70,000            |
-| **Total Cost**              | **1,130,000 KYD** | **1,400,000 USD** |
+| **Project Component**                  | **Cost (CI$)**    | **Cost (US$)**    |
+| -------------------------------------- | ----------------- | ----------------- |
+| **Unit 3 Purchase + Stamp Duty (7.5%)**| 387,000           | 471,900           |
+| **Unit 2 Purchase + Stamp Duty (7.5%)**| 456,875           | 557,200           |
+| **Unit 5 Purchase + Stamp Duty (7.5%)**| 456,875           | 557,200           |
+| **Unit 6 Purchase + Stamp Duty (7.5%)**| 456,875           | 557,200           |
+| **Renovation & Parking**               | 100,000           | 121,950           |
+| **Sale of Current Unit (Est.)**        | (350,000)         | (426,800)         |
+| **Total Project Cost**                 | **1,507,625 CI$** | **1,838,650 US$** |
 
-**Timeline Goal**: Move in by Ramadhan 2026
+### Fundraising Progress
+
+| **Item**                               | **CI$**           | **US$**           |
+| -------------------------------------- | ----------------- | ----------------- |
+| **Amount Collected**                   | 270,000           | 329,300           |
+| **Interest-Free Bridge Loan**          | 118,000           | 144,000           |
+| **Immediate Funds Needed (Feb 6, 2026)**| 105,875          | 129,000           |
+
+### Key Dates
+
+* **Feb 6, 2026**: Purchase of Unit 2 (immediate deadline)
+* **March - June 2026**: Target to purchase Units 5 & 6
+* **Goal**: Move in by Ramadhan 2026
 
 - - -
 

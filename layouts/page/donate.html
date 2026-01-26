@@ -38,60 +38,64 @@
     {{ end }}
   </div>
 
-  {{/* Active Campaign Banner */}}
-  {{ if $activeCampaign }}
-    <div class="mb-12 rounded-2xl p-8 md:p-12 shadow-xl">
-      <div class="text-center">
-        <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-6 bg-primary-100 text-primary-700">
-          🎯 Active Campaign
-        </div>
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">
-          {{ $activeCampaign.title }}
-        </h2>
-        {{ if $activeCampaign.description }}
-          <p class="text-base mb-8 max-w-3xl mx-auto">
-            {{ $activeCampaign.description }}
-          </p>
-        {{ end }}
-      </div>
+  {{/* Active Campaigns */}}
+  {{ if .Params.campaigns }}
+    {{ range .Params.campaigns }}
+      {{ if eq .active true }}
+        <div class="mb-12 rounded-2xl p-8 md:p-12 shadow-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+          <div class="text-center">
+            <div class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-6 bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300">
+              Active Campaign
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
+              {{ .title }}
+            </h2>
+            {{ if .description }}
+              <p class="text-base mb-8 max-w-3xl mx-auto text-neutral-600 dark:text-neutral-400">
+                {{ .description }}
+              </p>
+            {{ end }}
+          </div>
 
-      {{/* Progress Bar */}}
-      {{ if and $activeCampaign.goal $activeCampaign.raised }}
-        {{ $goal := replaceRE "[^0-9]" "" $activeCampaign.goal }}
-        {{ $raised := $activeCampaign.raised }}
-        {{ $goalFloat := float $goal }}
-        {{ $raisedFloat := float $raised }}
-        {{ $percentage := 0.0 }}
-        {{ if gt $goalFloat 0 }}
-          {{ $percentage = div (mul $raisedFloat 100.0) $goalFloat }}
-          {{ if gt $percentage 100.0 }}
-            {{ $percentage = 100.0 }}
+          {{/* Progress Bar */}}
+          {{ if and .goal .raised }}
+            {{ $goal := .goal }}
+            {{ $raised := .raised }}
+            {{ $goalFloat := float $goal }}
+            {{ $raisedFloat := float $raised }}
+            {{ $percentage := 0.0 }}
+            {{ if gt $goalFloat 0 }}
+              {{ $percentage = div (mul $raisedFloat 100.0) $goalFloat }}
+              {{ if gt $percentage 100.0 }}
+                {{ $percentage = 100.0 }}
+              {{ end }}
+            {{ end }}
+            
+            <div class="max-w-2xl mx-auto mb-6">
+              <div class="flex justify-between text-sm font-semibold mb-2 text-neutral-700 dark:text-neutral-300">
+                <span>Raised: $<span data-amount="{{ printf "%.0f" $raisedFloat }}">{{ printf "%.0f" $raisedFloat }}</span></span>
+                <span>Goal: $<span data-amount="{{ printf "%.0f" $goalFloat }}">{{ printf "%.0f" $goalFloat }}</span></span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-4 overflow-hidden">
+                <div class="bg-primary-600 h-full rounded-full transition-all duration-500" style="width: {{ $percentage }}%"></div>
+              </div>
+              <div class="text-center mt-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                {{ printf "%.0f" $percentage }}% of goal reached
+              </div>
+            </div>
           {{ end }}
-        {{ end }}
-        
-        <div class="max-w-2xl mx-auto mb-6">
-          <div class="flex justify-between text-sm font-semibold mb-2">
-            <span>Raised: $<span data-amount="{{ printf "%.0f" $raisedFloat }}">{{ printf "%.0f" $raisedFloat }}</span></span>
-            <span>Goal: $<span data-amount="{{ printf "%.0f" $goalFloat }}">{{ printf "%.0f" $goalFloat }}</span></span>
-          </div>
-          <div class="w-full bg-neutral-200 rounded-full h-4 overflow-hidden">
-            <div class="bg-primary-600 h-full rounded-full transition-all duration-500" style="width: {{ $percentage }}%"></div>
-          </div>
-          <div class="text-center mt-2 text-sm font-medium">
-            {{ printf "%.0f" $percentage }}% of goal reached
-          </div>
-        </div>
-      {{ end }}
 
-      {{/* Campaign Message */}}
-      {{ if $activeCampaign.message }}
-        <div class="max-w-3xl mx-auto text-center mt-8">
-          <p class="text-lg italic text-primary-600 border-l-4 border-primary-500 pl-4 py-2">
-            {{ $activeCampaign.message }}
-          </p>
+          {{/* Campaign Message */}}
+          {{ if .message }}
+            <div class="max-w-3xl mx-auto text-center mt-8">
+              <p class="text-lg italic text-primary-600 dark:text-primary-400 border-l-4 border-primary-500 pl-4 py-2">
+                {{ .message }}
+              </p>
+            </div>
+          {{ end }}
         </div>
       {{ end }}
-    </div>
+    {{ end }}
   {{ end }}
 
   {{/* Online Donation Form */}}
