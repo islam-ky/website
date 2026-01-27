@@ -97,28 +97,42 @@ The Masjid will also be located at a busy junction, ensuring many more eyes will
 
 We hope to move into the new location by **Ramadhan of 2026**. That is why there is an urgent need to raise the funds and begin renovation work as soon as possible.
 
+*All costs include 7.5% stamp duty and related fees.*
+
+### Phase 1: Units 2 & 3 (Immediate Priority)
+
 | **Project Component**                  | **Cost (CI$)**    | **Cost (US$)**    |
 | -------------------------------------- | ----------------- | ----------------- |
-| **Unit 3 Purchase + Stamp Duty (7.5%)**| 387,000           | 471,900           |
-| **Unit 2 Purchase + Stamp Duty (7.5%)**| 456,875           | 557,200           |
-| **Unit 5 Purchase + Stamp Duty (7.5%)**| 456,875           | 557,200           |
-| **Unit 6 Purchase + Stamp Duty (7.5%)**| 456,875           | 557,200           |
-| **Renovation & Parking**               | 100,000           | 121,950           |
+| **Unit 3 (SECURED - finalizing contract)**| 387,000        | 471,900           |
+| **Unit 2 Purchase**                    | 456,875           | 557,200           |
 | **Sale of Current Unit (Est.)**        | (350,000)         | (426,800)         |
-| **Total Project Cost**                 | **1,507,625 CI$** | **1,838,650 US$** |
+| **Phase 1 Total**                      | **493,875 CI$**   | **602,300 US$**   |
+
+### Phase 2: Units 5 & 6 + Renovation (March - June 2026)
+
+| **Project Component**                  | **Cost (CI$)**    | **Cost (US$)**    |
+| -------------------------------------- | ----------------- | ----------------- |
+| **Unit 5 Purchase**                    | 456,875           | 557,200           |
+| **Unit 6 Purchase**                    | 456,875           | 557,200           |
+| **Renovation & Parking**               | 100,000           | 121,950           |
+| **Phase 2 Total**                      | **1,013,750 CI$** | **1,236,350 US$** |
+
+### Overall Project Total: **CI$1,507,625 / US$1,838,650**
 
 ### Fundraising Progress
 
 | **Item**                               | **CI$**           | **US$**           |
 | -------------------------------------- | ----------------- | ----------------- |
-| **Amount Collected**                   | 270,000           | 329,300           |
-| **Interest-Free Bridge Loan**          | 118,000           | 144,000           |
-| **Immediate Funds Needed (Feb 6, 2026)**| 105,875          | 129,000           |
+| **Donations Collected**                | 270,000           | 329,300           |
+| **Interest-Free Bridge Loan (to be repaid)**| 118,000      | 144,000           |
+| **Total Available for Phase 1**        | 388,000           | 473,300           |
+| **Remaining Gap (by Feb 6, 2026)**     | 105,875           | 129,000           |
 
 ### Key Dates
 
+* **Unit 3**: SECURED - finalizing contract
 * **Feb 6, 2026**: Purchase of Unit 2 (immediate deadline)
-* **March - June 2026**: Target to purchase Units 5 & 6
+* **March - June 2026**: Target to purchase Units 5 & 6 (CI$1,013,750 needed)
 * **Goal**: Move in by Ramadhan 2026
 
 - - -

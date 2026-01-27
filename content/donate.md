@@ -54,14 +54,14 @@ donation_uses:
     description: "Activities and education for our young community members"
 campaigns:
   - title: "Phase 1: Purchase Units 2 & 3 (Happening Now)"
-    description: "Immediate funds needed by Feb 6, 2026 to secure Units 2 & 3 for the new Masjid. We have also secured a CI$118,000 interest-free bridge loan to help reach our goal."
+    description: "Unit 3 is SECURED (finalizing contract). Immediate funds needed by Feb 6, 2026 for Unit 2. We also have a CI$118,000 bridge loan (to be repaid from future donations). All amounts include 7.5% stamp duty."
     active: true
     goal: 493875
     raised: 270000
-    message: "\"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise.\" - Prophet Muhammad (PBUH). Help us secure the first two units for our new Masjid. Target: Complete by Feb 6, 2026."
+    message: "\"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise.\" - Prophet Muhammad (PBUH). Help us complete Phase 1 - only CI$105,875 remaining to reach our goal by Feb 6, 2026."
     donation_amounts: [100, 250, 500, 1000, 5000, 10000]
-  - title: "Phase 2: Units 5 & 6 + Renovation (Coming Soon)"
-    description: "Target: March - June 2026. Purchase remaining units and complete renovation & parking to finalize the new Masjid."
+  - title: "Phase 2: Units 5 & 6 + Renovation (CI$1,013,750 needed)"
+    description: "Target: March - June 2026. Purchase remaining units and complete renovation & parking. All amounts include 7.5% stamp duty and fees."
     active: true
     goal: 1013750
     raised: 0
