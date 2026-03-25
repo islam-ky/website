@@ -1,9 +1,9 @@
 ---
-title: "Is All Cheese Halal? So Eat!"
-description: "Is all cheese halal? So eat!"
-date: 2025-01-24T00:00:00Z
-draft: false
+title: Is All Cheese Halal? So Eat!
+date: 2025-01-24T00:00:00.000Z
+description: Is all cheese halal to eat?
 image: /img/halal-cheese.jpg
+draft: false
 ---
 
 
