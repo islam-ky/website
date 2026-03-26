@@ -1,0 +1,27 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('announcements');
+  return entries.filter((e) => !e.data.draft).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ContentLayout title={entry.data.title} description={entry.data.description} backLink="/announcements/" backLabel="Back to Announcements">
+  <div class="mb-6 flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
+    <time>{entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+    {entry.data.urgent && (
+      <span class="px-2 py-0.5 text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300 rounded-full">
+        Urgent
+      </span>
+    )}
+  </div>
+  <Content />
+</ContentLayout>

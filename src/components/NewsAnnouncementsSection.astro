@@ -1,0 +1,143 @@
+---
+import { getCollection } from 'astro:content';
+
+// Announcements
+const announcements = (await getCollection('announcements'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+// Events - show future first, then recent past
+const now = new Date();
+const allEvents = (await getCollection('events'))
+  .filter((e) => !e.data.draft)
+  .sort((a, b) => b.data.eventDate.getTime() - a.data.eventDate.getTime());
+
+const futureEvents = allEvents.filter((e) => e.data.eventDate >= now);
+const pastEvents = allEvents.filter((e) => e.data.eventDate < now);
+const events = [...futureEvents, ...pastEvents].slice(0, 3);
+---
+
+<section class="news-section py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">Recent News & Announcements</h2>
+      <p class="text-xl max-w-3xl mx-auto text-neutral-600 dark:text-neutral-400">
+        Stay updated with the latest happenings and important notices from our community
+      </p>
+    </div>
+
+    {/* Two-column layout: Announcements + Events */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+
+      {/* Announcements Column */}
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-2xl font-bold">Announcements</h3>
+          <a href="/announcements/" class="text-primary-600 dark:text-primary-400 hover:underline font-medium text-sm">
+            View All &rarr;
+          </a>
+        </div>
+        <div class="space-y-4">
+          {announcements.map((item) => (
+            <a
+              href={`/announcements/${item.id}/`}
+              class="group block bg-white dark:bg-neutral-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-5 border border-neutral-200 dark:border-neutral-700 hover:-translate-y-1"
+            >
+              <div class="flex items-start justify-between mb-2">
+                <time class="text-xs text-neutral-500 dark:text-neutral-400">
+                  {item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {item.data.urgent && (
+                  <span class="px-2 py-0.5 text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300 rounded-full">
+                    Urgent
+                  </span>
+                )}
+              </div>
+              <h4 class="text-base font-bold group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">
+                {item.data.title}
+              </h4>
+              {item.data.description && (
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
+                  {item.data.description}
+                </p>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Events Column */}
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-2xl font-bold">Upcoming Events</h3>
+          <a href="/news-and-events/" class="text-primary-600 dark:text-primary-400 hover:underline font-medium text-sm">
+            View All &rarr;
+          </a>
+        </div>
+        <div class="space-y-4">
+          {events.map((event) => (
+            <a
+              href={`/events/${event.id}/`}
+              class="group block bg-white dark:bg-neutral-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:-translate-y-1"
+            >
+              <div class="flex">
+                {event.data.image && (
+                  <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+                    <img
+                      src={event.data.image}
+                      alt={event.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-4 flex-grow">
+                  <div class="flex items-center gap-2 text-xs text-primary-600 dark:text-primary-400 mb-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <time>
+                      {event.data.eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </time>
+                    <span class="text-neutral-400">|</span>
+                    <span>{event.data.eventTime}</span>
+                  </div>
+                  <h4 class="text-base font-bold group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">
+                    {event.data.title}
+                  </h4>
+                  <div class="flex items-center gap-1 text-xs text-neutral-500 dark:text-neutral-400">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>{event.data.location}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Stay Connected CTA */}
+    <div class="text-center">
+      <div class="bg-white dark:bg-neutral-800 rounded-lg p-8 shadow-md border border-neutral-200 dark:border-neutral-700">
+        <h3 class="text-xl font-semibold mb-4">Stay Connected</h3>
+        <p class="text-neutral-600 dark:text-neutral-400 mb-6">
+          Don't miss important community updates, prayer time changes, and upcoming events.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/announcements/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300">
+            View All Announcements
+          </a>
+          <a href="/news-and-events/" class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300">
+            View All Events
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

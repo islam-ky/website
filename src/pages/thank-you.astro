@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Thank You for Your Donation">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+    <!-- Arabic heading -->
+    <div class="mb-8">
+      <h1 class="text-5xl md:text-6xl font-bold text-primary-600 dark:text-primary-400 mb-4" dir="rtl">جزاك الله خيرا</h1>
+      <p class="text-xl text-neutral-600 dark:text-neutral-400 italic">May Allah Reward You with Goodness</p>
+    </div>
+
+    <!-- Thank you message -->
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 md:p-12 mb-8 border border-neutral-200 dark:border-neutral-700">
+      <h2 class="text-3xl font-bold mb-4">Thank You for Your Generous Donation</h2>
+      <p class="text-lg text-neutral-600 dark:text-neutral-400 mb-6">
+        Your contribution to the Islamic Society of Cayman Islands is deeply appreciated. Every donation, no matter the size, makes a meaningful difference in our community.
+      </p>
+
+      <!-- Quote -->
+      <blockquote class="border-l-4 border-primary-500 pl-4 my-6 text-left">
+        <p class="text-neutral-700 dark:text-neutral-300 italic">
+          "Whoever gives charity equal to a date from good (halal) earnings – for Allah does not accept anything but that which is good – Allah will take it in His right hand and tend it for the one who gave it as any one of you tends his foal, until it becomes like a mountain."
+        </p>
+        <footer class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">— Sahih al-Bukhari</footer>
+      </blockquote>
+    </div>
+
+    <!-- Impact -->
+    <div class="bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl p-8 mb-8">
+      <h3 class="text-2xl font-bold mb-4">Your Impact</h3>
+      <p class="text-neutral-600 dark:text-neutral-400 mb-6">Your donation will help support:</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left">
+        {[
+          'Maintaining our prayer facilities',
+          'Supporting educational programs',
+          'Assisting community members in need',
+          'Organizing community events',
+          'Youth development programs',
+          'Community outreach initiatives',
+        ].map((point) => (
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-sm">{point}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-md p-8 mb-8 border border-neutral-200 dark:border-neutral-700">
+      <h3 class="text-2xl font-bold mb-6">What Happens Next</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h4 class="font-bold mb-1">Confirmation</h4>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">You'll receive a confirmation email for your records</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+          </div>
+          <h4 class="font-bold mb-1">Receipt</h4>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">A donation receipt will be available upon request</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+          </div>
+          <h4 class="font-bold mb-1">Impact</h4>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Your donation goes directly to supporting our community</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="text-neutral-600 dark:text-neutral-400">
+      <p class="mb-2">Have questions about your donation? Contact us:</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="tel:+13453292079" class="text-primary-600 dark:text-primary-400 hover:underline">+1 (345) 329-2079</a>
+        <a href="mailto:isci@candw.ky" class="text-primary-600 dark:text-primary-400 hover:underline">isci@candw.ky</a>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <a href="/" class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:underline font-medium">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        Return to Home
+      </a>
+    </div>
+  </div>
+</BaseLayout>

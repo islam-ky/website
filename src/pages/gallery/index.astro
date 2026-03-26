@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const albums = (await getCollection('gallery'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => (b.data.date?.getTime() || 0) - (a.data.date?.getTime() || 0));
+---
+
+<BaseLayout title="Photo Gallery" description="Community photos and memories from ISCI">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl font-bold mb-4">Photo Gallery</h1>
+      <p class="text-lg text-neutral-600 dark:text-neutral-400">Community moments and memories</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {albums.map((album) => {
+        const coverImage = album.data.album?.cover_image || album.data.album?.images?.[0]?.src;
+        return (
+          <a
+            href={`/gallery/${album.id}/`}
+            class="group block bg-white dark:bg-neutral-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:-translate-y-1"
+          >
+            {coverImage && (
+              <div class="h-56 overflow-hidden">
+                <img
+                  src={coverImage}
+                  alt={album.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-5">
+              {album.data.date && (
+                <time class="text-sm text-neutral-500 dark:text-neutral-400 mb-2 block">
+                  {album.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              )}
+              <h2 class="text-lg font-bold group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2">
+                {album.data.title}
+              </h2>
+              {album.data.description && (
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">{album.data.description}</p>
+              )}
+              {album.data.album?.images && (
+                <p class="text-xs text-neutral-500 mt-2">{album.data.album.images.length} photos</p>
+              )}
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>

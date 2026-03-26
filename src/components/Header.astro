@@ -1,0 +1,190 @@
+---
+const currentPath = Astro.url.pathname;
+
+const menuItems = [
+  { name: 'Home', url: '/', weight: 10 },
+  {
+    name: 'About Us', url: '/about-us/', weight: 20,
+    children: [
+      { name: 'Organisation and History', url: '/about-us/organisation-and-history/' },
+      { name: 'About Our Imam', url: '/about-us/our-imam/' },
+    ],
+  },
+  {
+    name: 'Services', url: '/services-and-facilities/', weight: 50,
+    children: [
+      { name: 'Masjid Activities', url: '/services-and-facilities/masjid-activities/' },
+      { name: 'Daily Salaah', url: '/services-and-facilities/daily-salaah/' },
+      { name: 'Islam Classes for Children', url: '/services-and-facilities/islam-classes-for-children/' },
+      { name: 'Daily Lectures', url: '/services-and-facilities/daily-lectures/' },
+      { name: 'Sisters Learning Circle', url: '/services-and-facilities/sisters-learning-circle/' },
+      { name: 'Masjid Services', url: '/services-and-facilities/masjid-services/' },
+      { name: 'Ramadhan Programme', url: '/services-and-facilities/ramadhan-programme/' },
+    ],
+  },
+  { name: 'Announcements', url: '/announcements/', weight: 60 },
+  { name: 'Gallery', url: '/gallery/', weight: 65 },
+  { name: 'News & Events', url: '/news-and-events/', weight: 70 },
+  { name: 'Donate', url: '/donate/', weight: 80 },
+  { name: 'Islam in Cayman', url: '/islam-in-cayman/', weight: 90 },
+];
+
+function isActive(url: string): boolean {
+  if (url === '/') return currentPath === '/';
+  return currentPath.startsWith(url);
+}
+---
+
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-700">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      {/* Logo */}
+      <a href="/" class="flex items-center gap-2 flex-shrink-0">
+        <img src="/img/logo.png" alt="ISCI" class="h-10 w-auto" />
+        <span class="text-lg font-bold hidden sm:inline">ISCI</span>
+      </a>
+
+      {/* Desktop Nav */}
+      <div class="hidden xl:flex items-center gap-0.5">
+        {menuItems.map((item) => (
+          <div class="relative group">
+            <a
+              href={item.url}
+              class:list={[
+                'px-2.5 py-2 rounded-lg text-xs font-medium transition-colors whitespace-nowrap',
+                isActive(item.url)
+                  ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300'
+                  : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800',
+              ]}
+            >
+              {item.name}
+              {item.children && (
+                <svg class="inline-block w-3 h-3 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              )}
+            </a>
+            {item.children && (
+              <div class="absolute left-0 top-full pt-2 hidden group-hover:block z-50">
+                <div class="bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-700 py-2 min-w-[220px]">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.url}
+                      class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                    >
+                      {child.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Dark mode toggle */}
+        <button
+          id="theme-toggle"
+          class="ml-1 p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile hamburger */}
+      <button
+        id="mobile-menu-btn"
+        class="xl:hidden p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
+        aria-label="Open menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    {/* Mobile menu */}
+    <div id="mobile-menu" class="hidden xl:hidden pb-4">
+      {menuItems.map((item) => (
+        <div>
+          <a
+            href={item.url}
+            class:list={[
+              'block px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+              isActive(item.url)
+                ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300'
+                : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800',
+            ]}
+          >
+            {item.name}
+          </a>
+          {item.children && (
+            <div class="pl-4">
+              {item.children.map((child) => (
+                <a
+                  href={child.url}
+                  class="block px-3 py-1.5 text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                >
+                  {child.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+      <button
+        id="theme-toggle-mobile"
+        class="mt-2 w-full px-3 py-2 rounded-lg text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 text-left transition-colors"
+      >
+        Toggle Dark Mode
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  // Dark mode with class strategy
+  function initTheme() {
+    const stored = localStorage.getItem('theme');
+    const isDark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    updateIcons();
+  }
+
+  function updateIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const moon = document.getElementById('icon-moon');
+    const sun = document.getElementById('icon-sun');
+    if (moon && sun) {
+      moon.style.display = isDark ? 'none' : 'block';
+      sun.style.display = isDark ? 'block' : 'none';
+    }
+  }
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateIcons();
+  }
+
+  // Initialize immediately (before DOMContentLoaded to prevent flash)
+  initTheme();
+
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+  // Mobile menu
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+</script>

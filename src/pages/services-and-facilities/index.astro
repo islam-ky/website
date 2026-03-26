@@ -1,0 +1,20 @@
+---
+import SectionListLayout from '../../layouts/SectionListLayout.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('services-and-facilities'))
+  .filter((a) => !a.data.draft)
+  .map((a) => ({
+    id: a.id,
+    title: a.data.title,
+    description: a.data.description,
+    image: a.data.image,
+  }));
+---
+
+<SectionListLayout
+  title="Services and Facilities"
+  description="Explore the services and facilities offered by ISCI."
+  items={items}
+  basePath="/services-and-facilities/"
+/>

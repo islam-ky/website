@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+
+const announcements = (await getCollection('announcements'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<section class="py-12 bg-neutral-50 dark:bg-neutral-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-bold">Announcements</h2>
+      <a href="/announcements/" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">
+        View All &rarr;
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {announcements.map((item) => (
+        <a
+          href={`/announcements/${item.id}/`}
+          class="group block bg-white dark:bg-neutral-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-neutral-200 dark:border-neutral-700 hover:-translate-y-1"
+        >
+          <div class="flex items-start justify-between mb-3">
+            <time class="text-sm text-neutral-500 dark:text-neutral-400">
+              {item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            {item.data.urgent && (
+              <span class="px-2 py-0.5 text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300 rounded-full">
+                Urgent
+              </span>
+            )}
+          </div>
+          <h3 class="text-lg font-bold group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2">
+            {item.data.title}
+          </h3>
+          {item.data.description && (
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
+              {item.data.description}
+            </p>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

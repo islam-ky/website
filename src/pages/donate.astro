@@ -1,0 +1,361 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Donate page data (matches content/donate.md front matter)
+const paymentMethods = [
+  {
+    title: 'Cash Donations',
+    icon: 'cash',
+    description: 'For cash donations, please contact us directly',
+    details: [
+      { label: 'Phone', value: '+1 (345) 329-2079' },
+      { label: 'Email', value: 'isci@candw.ky' },
+    ],
+  },
+  {
+    title: 'Bank Transfer (Local)',
+    icon: 'bank',
+    description: 'Cayman National Bank Ltd. - Islamic Society of the Cayman Islands',
+    details: [
+      { label: 'USD Account', value: '021-05137' },
+      { label: 'KYD Account', value: '011-07863' },
+    ],
+  },
+  {
+    title: 'International Transfer',
+    icon: 'card',
+    description: 'Wire transfer via Citibank, NA',
+    details: [
+      { label: 'Primary Bank', value: 'Citibank, NA' },
+      { label: 'SWIFT', value: 'CITIUS33XXX' },
+      { label: 'ABA Routing', value: '021000089' },
+      { label: 'Correspondent', value: 'Cayman National Bank (CNATKYKY)' },
+      { label: 'Final Account', value: '021-05137' },
+    ],
+  },
+];
+
+const donationUses = [
+  { title: 'Daily Operations', description: 'Utilities, maintenance, and facility upkeep' },
+  { title: 'Educational Programs', description: 'Quran classes, Islamic education for children and adults' },
+  { title: 'Community Services', description: 'Support for new Muslims, counseling, and social services' },
+  { title: 'Special Events', description: 'Eid celebrations, Ramadan programs, and community gatherings' },
+  { title: 'Outreach Programs', description: 'Interfaith dialogue and community outreach' },
+  { title: 'Youth Programs', description: 'Activities and education for our young community members' },
+];
+
+const campaigns = [
+  {
+    title: 'Phase 1: Purchase Units 2 & 3 (Happening Now)',
+    description: 'Unit 2 and 3 have been purchased and we have officially moved in. However this is just the beginning. We have a CI$118,000 bridge loan (to be repaid from future donations). All amounts include 7.5% stamp duty. We also need to renovate the Masjid and car park. The total for renovations, including carpets, wudhu area, prayer space and Minbar is $90,000 KYD',
+    active: true,
+    goal: 250000,
+    raised: 45000,
+    amounts: [100, 250, 500, 1000, 5000, 10000],
+  },
+  {
+    title: 'Phase 2: Units 5 & 6 + Renovation (CI$1,013,750 needed)',
+    description: 'Target: June 2026. Purchase remaining units including development. All amounts include 7.5% stamp duty and fees.',
+    active: true,
+    goal: 1013750,
+    raised: 0,
+    amounts: [100, 250, 500, 1000, 5000, 10000],
+  },
+];
+
+const LAMBDA_ENDPOINT = 'https://fgj0gw3z1g.execute-api.us-east-2.amazonaws.com/default/generateSignature';
+const CYBERSOURCE_URL = 'https://secureacceptance.cybersource.com/pay';
+---
+
+<BaseLayout title="Donate" description="Support the Islamic Society of Cayman Islands through various donation methods">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Donate</h1>
+      <p class="text-xl text-primary-600 dark:text-primary-400 font-medium mb-2">Thank You for Your Desire to Give!</p>
+      <p class="text-neutral-600 dark:text-neutral-400 italic max-w-2xl mx-auto">
+        "The believer's shade on the Day of Resurrection will be his charity." — Prophet Muhammad (PBUH)
+      </p>
+    </header>
+
+    <!-- Campaigns -->
+    {campaigns.map((campaign) => (
+      <div class="mb-12 bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 border border-neutral-200 dark:border-neutral-700">
+        <h2 class="text-2xl font-bold mb-4">{campaign.title}</h2>
+        <p class="text-neutral-600 dark:text-neutral-400 mb-6">{campaign.description}</p>
+        <!-- Progress bar -->
+        <div class="mb-4">
+          <div class="flex justify-between text-sm mb-2">
+            <span class="font-semibold">CI${campaign.raised.toLocaleString()} raised</span>
+            <span class="text-neutral-500">Goal: CI${campaign.goal.toLocaleString()}</span>
+          </div>
+          <div class="h-4 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
+            <div
+              class="h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full transition-all duration-1000"
+              style={`width: ${Math.min((campaign.raised / campaign.goal) * 100, 100)}%`}
+            />
+          </div>
+        </div>
+      </div>
+    ))}
+
+    <!-- Online Donation Form -->
+    <div class="mb-16">
+      <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 md:p-12 border-2 border-primary-200 dark:border-primary-800">
+        <h2 class="text-3xl font-bold text-center mb-3">Donate Online</h2>
+        <p class="text-center text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
+          Support our community with a secure online donation. All major credit and debit cards accepted.
+        </p>
+
+        <form id="donationForm" class="max-w-3xl mx-auto space-y-6">
+          <!-- Currency Selection -->
+          <div>
+            <label class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">Select Currency</label>
+            <div class="grid grid-cols-2 gap-4">
+              <button type="button" class="currency-btn p-4 border-2 rounded-lg flex flex-col items-center gap-1 cursor-pointer font-semibold transition-all hover:-translate-y-0.5 hover:shadow-md bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" data-currency="USD">
+                <span class="text-lg font-bold">USD</span>
+                <span class="text-sm">US Dollar</span>
+              </button>
+              <button type="button" class="currency-btn p-4 border-2 rounded-lg flex flex-col items-center gap-1 cursor-pointer font-semibold transition-all hover:-translate-y-0.5 hover:shadow-md bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" data-currency="KYD">
+                <span class="text-lg font-bold">KYD</span>
+                <span class="text-sm">Cayman Dollar</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Preset Amounts -->
+          <div>
+            <label class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-3">Select or Enter Amount</label>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-4">
+              {[25, 50, 100, 250, 500, 1000].map((amount) => (
+                <button
+                  type="button"
+                  class="amount-btn py-3 px-4 border-2 border-transparent rounded-lg font-semibold cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-md bg-neutral-100 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-300"
+                  data-amount={amount}
+                >
+                  ${amount}
+                </button>
+              ))}
+            </div>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 font-semibold" id="currencySymbol">$</span>
+              <input
+                type="number"
+                id="customAmount"
+                name="amount"
+                placeholder="Enter custom amount"
+                min="1"
+                step="0.01"
+                class="w-full pl-10 pr-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Donor Info -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="donorName" class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Full Name</label>
+              <input type="text" id="donorName" name="donor_name" placeholder="Your name" class="w-full px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all" />
+            </div>
+            <div>
+              <label for="donorEmail" class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Email Address</label>
+              <input type="email" id="donorEmail" name="donor_email" placeholder="your.email@example.com" class="w-full px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all" />
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="pt-4">
+            <button type="submit" id="submitBtn" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+              <span>Proceed to Secure Payment</span>
+            </button>
+            <p class="text-xs text-center text-neutral-500 dark:text-neutral-400 mt-3">
+              Secured by CyberSource &bull; SSL Encrypted &bull; Visa, Mastercard, Amex accepted
+            </p>
+          </div>
+
+          <div id="formMessage" class="hidden p-4 rounded-lg"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- CyberSource hidden form -->
+    <form id="cybersourceForm" method="post" action="" style="display: none;"></form>
+
+    <!-- Payment Methods -->
+    <h2 class="text-3xl font-bold text-center mb-8">Other Payment Methods</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      {paymentMethods.map((method) => (
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-md p-6 border border-neutral-200 dark:border-neutral-700">
+          <h3 class="text-xl font-bold mb-2">{method.title}</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{method.description}</p>
+          <dl class="space-y-2 text-sm">
+            {method.details.map((d) => (
+              <div class="flex justify-between">
+                <dt class="font-medium text-neutral-500 dark:text-neutral-400">{d.label}</dt>
+                <dd class="font-semibold">{d.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+
+    <!-- How Donations Help -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-center mb-8">How Your Donations Help</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {donationUses.map((use) => (
+          <div class="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-md border border-neutral-200 dark:border-neutral-700">
+            <h3 class="text-lg font-bold mb-2">{use.title}</h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">{use.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="text-center bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-8">
+      <h2 class="text-2xl font-bold mb-4">Questions About Donations?</h2>
+      <p class="text-neutral-600 dark:text-neutral-400 mb-4">
+        For any questions about donations or to discuss other ways to support our community, please reach out to us.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="tel:+13453292079" class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:underline font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+          +1 (345) 329-2079
+        </a>
+        <a href="mailto:isci@candw.ky" class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:underline font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+          isci@candw.ky
+        </a>
+      </div>
+    </div>
+
+    <p class="text-center text-neutral-500 dark:text-neutral-400 mt-8 italic">
+      May Allah reward you for your generosity and bless your contribution to our Islamic community.
+    </p>
+  </div>
+</BaseLayout>
+
+<script is:inline define:vars={{ LAMBDA_ENDPOINT, CYBERSOURCE_URL }}>
+  (function() {
+    let selectedCurrency = 'USD';
+    let selectedAmount = null;
+
+    const form = document.getElementById('donationForm');
+    const customAmountInput = document.getElementById('customAmount');
+    const currencySymbol = document.getElementById('currencySymbol');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    const cybersourceForm = document.getElementById('cybersourceForm');
+    const currencyBtns = document.querySelectorAll('.currency-btn');
+    const amountBtns = document.querySelectorAll('.amount-btn');
+
+    function updateAmountButtons() {
+      amountBtns.forEach(btn => {
+        const amount = btn.dataset.amount;
+        const symbol = selectedCurrency === 'USD' ? '$' : 'CI$';
+        btn.textContent = symbol + amount;
+      });
+    }
+
+    function showMessage(text, type) {
+      formMessage.textContent = text;
+      formMessage.className = 'p-4 rounded-lg ' + (
+        type === 'error' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' :
+        type === 'loading' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' :
+        'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+      );
+    }
+
+    currencyBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        currencyBtns.forEach(b => {
+          b.classList.remove('bg-primary-100', 'border-primary-500', 'dark:bg-primary-900/50');
+          b.classList.add('bg-neutral-100', 'border-neutral-300', 'dark:bg-neutral-700', 'dark:border-neutral-600');
+        });
+        this.classList.remove('bg-neutral-100', 'border-neutral-300', 'dark:bg-neutral-700', 'dark:border-neutral-600');
+        this.classList.add('bg-primary-100', 'border-primary-500', 'dark:bg-primary-900/50');
+        selectedCurrency = this.dataset.currency;
+        currencySymbol.textContent = selectedCurrency === 'USD' ? '$' : 'CI$';
+        updateAmountButtons();
+      });
+    });
+
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        amountBtns.forEach(b => {
+          b.classList.remove('bg-primary-600', 'text-white');
+          b.classList.add('bg-neutral-100', 'text-neutral-700', 'dark:bg-neutral-700', 'dark:text-neutral-300');
+        });
+        this.classList.remove('bg-neutral-100', 'text-neutral-700', 'dark:bg-neutral-700', 'dark:text-neutral-300');
+        this.classList.add('bg-primary-600', 'text-white');
+        selectedAmount = parseFloat(this.dataset.amount);
+        customAmountInput.value = selectedAmount;
+      });
+    });
+
+    customAmountInput.addEventListener('input', function() {
+      if (this.value) {
+        amountBtns.forEach(b => {
+          b.classList.remove('bg-primary-600', 'text-white');
+          b.classList.add('bg-neutral-100', 'text-neutral-700', 'dark:bg-neutral-700', 'dark:text-neutral-300');
+        });
+        selectedAmount = parseFloat(this.value);
+      }
+    });
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      formMessage.classList.add('hidden');
+
+      const amount = parseFloat(customAmountInput.value);
+      if (!amount || amount <= 0) {
+        showMessage('Please enter a valid donation amount', 'error');
+        return;
+      }
+
+      const donorName = document.getElementById('donorName').value.trim();
+      const donorEmail = document.getElementById('donorEmail').value.trim();
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span>Processing...</span>';
+      showMessage('Preparing secure payment...', 'loading');
+
+      try {
+        const response = await fetch(LAMBDA_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount, currency: selectedCurrency, donor_name: donorName, donor_email: donorEmail }),
+        });
+
+        if (!response.ok) throw new Error('Failed to prepare payment');
+
+        const signedFields = await response.json();
+        cybersourceForm.innerHTML = '';
+        cybersourceForm.action = CYBERSOURCE_URL;
+
+        for (const [key, value] of Object.entries(signedFields)) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          cybersourceForm.appendChild(input);
+        }
+
+        showMessage('Redirecting to secure payment page...', 'loading');
+        cybersourceForm.submit();
+      } catch (error) {
+        console.error('Payment error:', error);
+        showMessage('Unable to process payment. Please try again or use an alternative payment method below.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg><span>Proceed to Secure Payment</span>';
+      }
+    });
+
+    // Initialize default currency
+    if (currencyBtns.length > 0) currencyBtns[0].click();
+  })();
+</script>
