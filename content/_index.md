@@ -5,7 +5,7 @@ date: 2025-01-24T00:00:00Z
 draft: false
 slider:
   images:
-    - url: "/img/ISCI-Mosque-Slide-1.jpeg"
+    - url: "/img/new_mosque_building_day.png"
       title: "Welcome to ISCI"
       subtitle: "Building Community • Strengthening Faith • Serving Together"
       cta_text: "Learn More About Us"
@@ -13,7 +13,7 @@ slider:
       zoom_effect: "fast"        # Options: slow, medium, fast
       text_animation: "fadeInUp" # Options: fadeInUp, fadeInDown, fadeInLeft, fadeInRight, zoomIn
       button_delay: 800         # Delay in milliseconds before button appears
-    - url: "/img/ISCI-Mosque-Slide-3.jpeg"
+    - url: "/img/new_mosqueu_building_night_view.png"
       title: "Join Our Community"
       subtitle: "Prayer Services • Educational Programs • Community Events"
       cta_text: "Get Involved"
