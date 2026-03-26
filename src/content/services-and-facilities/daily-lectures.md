@@ -2,8 +2,8 @@
 title: Daily Lectures
 description: Daily Lectures at the Islamic Society of Cayman Islands
 date: 2025-01-24T00:00:00.000Z
-draft: false
 image: /img/daily-lecture-2021.jpg
+draft: false
 ---
 Sayyiduna Abu Umamah (radiyallahu ‘anhu) reports that Rasulullah (sallallahu ‘alayhi wa sallam) said:
 
@@ -24,4 +24,4 @@ The Prophet said, “Does not one of you go out in the morning to the mosque to 
 
 At the special seasons of mercy like the 9 days of Dhul Hijjah and Around Ramadhan, special and relevant series take place after Magri - like the deeds which give reward of Hajj and those actions which grant shade on the Day of Judgement. 
 
-Therefore, after the Fajr salaah, one verse of the Quran will be explained so that we can understand the word of Allah. Previously, Surah Yaseen was completed followed by the 28th Juz. Then Surah Kahf was also covered in great depth.
+Therefore, after the Fajr salaah, one verse of the Quran will be explained so that we can understand the word of Allah. Previously, Surah Yaseen was completed followed by the 28th Juz. Then Surah Kahf was also covered in great depth..
