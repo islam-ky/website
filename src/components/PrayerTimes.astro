@@ -1,0 +1,44 @@
+---
+// Prayer times via iframe from mosqueprayertimes.com
+// Designed to be embedded inline (no section wrapper)
+---
+
+<div class="prayer-times-container overflow-hidden mb-8">
+  <div class="px-6 py-4">
+    <h2 class="text-4xl font-bold text-center text-white">Prayer Times</h2>
+  </div>
+
+  <iframe
+    src="https://www.mosqueprayertimes.com/isci"
+    class="w-full border-0"
+    style="min-height: 600px; min-width: 350px"
+    title="ISCI Prayer Times"
+    loading="lazy"
+  >
+    <p class="p-6 text-center text-neutral-600 dark:text-neutral-300">
+      Your browser does not support iframes.
+      <a
+        href="https://www.mosqueprayertimes.com/isci"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-primary-600 dark:text-primary-400 hover:underline"
+      >
+        View Prayer Times
+      </a>
+    </p>
+  </iframe>
+
+  <div class="bg-neutral-50/20 px-6 py-3 text-center">
+    <p class="text-xs text-white/70">
+      Prayer times are automatically updated.
+      <a
+        href="https://www.mosqueprayertimes.com/isci"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/90 hover:underline"
+      >
+        View Full Schedule
+      </a>
+    </p>
+  </div>
+</div>

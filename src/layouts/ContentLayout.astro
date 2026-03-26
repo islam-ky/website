@@ -1,0 +1,75 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  backLink?: string;
+  backLabel?: string;
+}
+
+const { title, description, image, backLink, backLabel } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    {/* Featured Image Header */}
+    {image ? (
+      <div class="relative w-full h-64 md:h-96 rounded-lg overflow-hidden shadow-lg mb-8">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        {/* Gradient Overlay */}
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+        {/* Title Overlay on Image */}
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+            {title}
+          </h1>
+          {description && (
+            <p class="text-lg md:text-xl text-white/90 max-w-3xl">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    ) : (
+      <header class="mb-8">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+          {title}
+        </h1>
+        {description && (
+          <p class="text-lg md:text-xl text-neutral-600 dark:text-neutral-400">
+            {description}
+          </p>
+        )}
+      </header>
+    )}
+
+    {/* Article Content */}
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:text-neutral-900 dark:prose-headings:text-neutral-100 prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-strong:text-neutral-900 dark:prose-strong:text-neutral-100">
+      <slot />
+    </div>
+
+    {/* Footer - Back to List */}
+    {backLink && backLabel && (
+      <div class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+        <a
+          href={backLink}
+          class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          {backLabel}
+        </a>
+      </div>
+    )}
+  </article>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import SectionListLayout from '../../layouts/SectionListLayout.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('islam-in-cayman'))
+  .filter((a) => !a.data.draft)
+  .map((a) => ({
+    id: a.id,
+    title: a.data.title,
+    description: a.data.description,
+    image: a.data.image,
+  }));
+---
+
+<SectionListLayout
+  title="Islam in Cayman"
+  description="Practical Islamic guidance for life in the Cayman Islands."
+  items={items}
+  basePath="/islam-in-cayman/"
+/>

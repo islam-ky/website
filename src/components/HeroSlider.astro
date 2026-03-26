@@ -1,0 +1,132 @@
+---
+interface SliderImage {
+  url: string;
+  title: string;
+  subtitle: string;
+  cta_text: string;
+  cta_link: string;
+  zoom_effect?: string;
+  text_animation?: string;
+  button_delay?: number;
+}
+
+interface Props {
+  images: SliderImage[];
+  autoplay?: number;
+  arrows?: boolean;
+  bullets?: boolean;
+}
+
+const { images, autoplay = 5000, arrows = false, bullets = true } = Astro.props;
+---
+
+<div class="hero-slider glide" id="hero-slider">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      {images.map((slide) => (
+        <li class="glide__slide">
+          {/* Background with zoom */}
+          <div
+            class:list={[
+              'slide-bg',
+              slide.zoom_effect === 'fast' ? 'zoom-fast' : slide.zoom_effect === 'medium' ? 'zoom-medium' : 'zoom-slow',
+            ]}
+            style={`background-image: url('${slide.url}')`}
+          />
+          {/* Content */}
+          <div class="hero-content">
+            <h1
+              class:list={[
+                'hero-title animate-text',
+                slide.text_animation || 'fadeInUp',
+              ]}
+            >
+              {slide.title}
+            </h1>
+            <p
+              class:list={[
+                'hero-subtitle animate-text',
+                slide.text_animation || 'fadeInUp',
+              ]}
+            >
+              {slide.subtitle}
+            </p>
+            <a
+              href={slide.cta_link}
+              class="hero-cta animate-button"
+              style={`animation-delay: ${slide.button_delay || 800}ms`}
+            >
+              {slide.cta_text}
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {arrows && (
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+  )}
+
+  {bullets && (
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+      {images.map((_, i) => (
+        <button class="glide__bullet" data-glide-dir={`=${i}`} />
+      ))}
+    </div>
+  )}
+</div>
+
+<script is:inline define:vars={{ autoplay }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Glide !== 'undefined') {
+      const slider = new Glide('#hero-slider', {
+        type: 'carousel',
+        autoplay: autoplay,
+        hoverpause: true,
+        animationDuration: 800,
+        gap: 0,
+      });
+
+      // Trigger text animations on slide change
+      slider.on('run.after', function() {
+        // Remove animated class from all
+        document.querySelectorAll('.hero-slider .animate-text, .hero-slider .animate-button').forEach(function(el) {
+          el.classList.remove('animated');
+        });
+        // Add animated class to active slide elements
+        var active = document.querySelector('.hero-slider .glide__slide--active');
+        if (active) {
+          var elements = active.querySelectorAll('.animate-text, .animate-button');
+          elements.forEach(function(el, i) {
+            setTimeout(function() {
+              el.classList.add('animated');
+            }, i * 200);
+          });
+        }
+      });
+
+      slider.mount();
+
+      // Animate first slide on load
+      setTimeout(function() {
+        var active = document.querySelector('.hero-slider .glide__slide--active');
+        if (active) {
+          var elements = active.querySelectorAll('.animate-text, .animate-button');
+          elements.forEach(function(el, i) {
+            setTimeout(function() {
+              el.classList.add('animated');
+            }, i * 200);
+          });
+        }
+      }, 300);
+    }
+  });
+</script>

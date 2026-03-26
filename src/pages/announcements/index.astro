@@ -1,0 +1,21 @@
+---
+import SectionListLayout from '../../layouts/SectionListLayout.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('announcements'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .map((a) => ({
+    id: a.id,
+    title: a.data.title,
+    description: a.data.description,
+    date: a.data.date,
+  }));
+---
+
+<SectionListLayout
+  title="Announcements"
+  description="Stay updated with the latest news and announcements from ISCI."
+  items={items}
+  basePath="/announcements/"
+/>

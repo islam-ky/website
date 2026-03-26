@@ -1,0 +1,99 @@
+---
+// Community Support/Donation Section - matches Hugo donation-section.html
+const purposes = [
+  {
+    icon: 'mosque',
+    title: 'Mosque Operations',
+    description: 'Help maintain our prayer facilities, utilities, and daily operational needs',
+  },
+  {
+    icon: 'education',
+    title: 'Educational Programs',
+    description: 'Support Quran classes, Islamic education, and youth development programs',
+  },
+  {
+    icon: 'community',
+    title: 'Community Support',
+    description: 'Assist families in need, emergency support, and community welfare initiatives',
+  },
+];
+---
+
+<section class="py-16 px-4 sm:px-6 lg:px-8">
+  <div class="donation-section max-w-7xl mx-auto rounded-lg">
+    {/* Header */}
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">Support Our Community</h2>
+      <p class="text-xl max-w-3xl mx-auto text-neutral-600 dark:text-neutral-400">
+        Your generous contributions help maintain our mosque, support community programs, and serve those in need
+      </p>
+    </div>
+
+    {/* Purpose Cards */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      {purposes.map((purpose) => (
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
+            {purpose.icon === 'mosque' && (
+              <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            )}
+            {purpose.icon === 'education' && (
+              <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            )}
+            {purpose.icon === 'community' && (
+              <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            )}
+          </div>
+          <h3 class="text-xl font-semibold mb-2">{purpose.title}</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">{purpose.description}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* CTA */}
+    <div class="text-center">
+      <h3 class="text-2xl font-semibold mb-4">Make a Difference Today</h3>
+      <p class="text-neutral-600 dark:text-neutral-400 mb-6 max-w-2xl mx-auto">
+        Your donation, no matter the size, helps strengthen our community and support our mission of building faith, knowledge, and service.
+      </p>
+
+      {/* Quranic Quote */}
+      <div class="mb-6">
+        <p class="text-sm italic text-neutral-500 dark:text-neutral-500">
+          "The example of those who spend their wealth in the way of Allah is like a seed of grain which grows seven spikes..." - Quran 2:261
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/donate/"
+          class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          Donate Now
+        </a>
+        <a
+          href="/new-mosque-project/"
+          class="inline-flex items-center border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-400 font-medium py-4 px-8 rounded-lg transition-all duration-300 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-400 dark:hover:text-neutral-900"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          New Mosque Project
+        </a>
+      </div>
+
+      <div class="mt-6 text-sm text-neutral-500 dark:text-neutral-500">
+        <p>All donations are tax-deductible. Contact us for donation receipts or recurring giving options.</p>
+      </div>
+    </div>
+  </div>
+</section>

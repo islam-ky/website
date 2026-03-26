@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import PrayerTimes from '../components/PrayerTimes.astro';
+import NewsAnnouncementsSection from '../components/NewsAnnouncementsSection.astro';
+import DonationSection from '../components/DonationSection.astro';
+
+// Homepage slider data
+const slider = {
+  images: [
+    {
+      url: '/img/new_mosque_building_day.png',
+      title: 'Welcome to ISCI',
+      subtitle: 'Building Community \u2022 Strengthening Faith \u2022 Serving Together',
+      cta_text: 'Learn More About Us',
+      cta_link: '/about-us/',
+      zoom_effect: 'fast',
+      text_animation: 'fadeInUp',
+      button_delay: 800,
+    },
+    {
+      url: '/img/new_mosqueu_building_night_view.png',
+      title: 'Join Our Community',
+      subtitle: 'Prayer Services \u2022 Educational Programs \u2022 Community Events',
+      cta_text: 'Get Involved',
+      cta_link: '/contact-us/',
+      zoom_effect: 'fast',
+      text_animation: 'fadeInLeft',
+      button_delay: 800,
+    },
+    {
+      url: '/img/community.jpg',
+      title: 'Islamic Education',
+      subtitle: 'Quran Study \u2022 Arabic Classes \u2022 Youth Programs',
+      cta_text: 'Explore Programs',
+      cta_link: '/services-and-facilities/',
+      zoom_effect: 'fast',
+      text_animation: 'zoomIn',
+      button_delay: 800,
+    },
+  ],
+  autoplay: 5000,
+  arrows: false,
+  bullets: true,
+};
+---
+
+<BaseLayout title="Welcome to Islamic Society of Cayman Islands">
+  {/* Hero Slider */}
+  <HeroSlider
+    images={slider.images}
+    autoplay={slider.autoplay}
+    arrows={slider.arrows}
+    bullets={slider.bullets}
+  />
+
+  {/* Prayer Times + Welcome Section (side by side) */}
+  <section class="flex sm:flex-row flex-col">
+    <div class="h-full bg-pattern-orange sm:px-4 md:px-12 w-full">
+      <PrayerTimes />
+    </div>
+    <div class="w-full bg-pattern-mosqueue md:px-12 sm:px-4">
+      <div class="px-6 h-full flex flex-col justify-center max-w-prose py-12">
+        <h2 class="text-2xl font-semibold mb-4 text-white">Welcome to Islamic Society of Cayman Islands</h2>
+        <p class="text-white/90 leading-relaxed">
+          The Islamic Society was established in 2000 to cater for the needs of
+          the Muslim society on the Cayman Islands. As well as a place of worship,
+          it is a community hub, providing education for children and adult as
+          well as social events and activities. A wide range of services are
+          offered here such as counselling and other social services. It also
+          presents the true teachings of Islam as a religion of tolerance,
+          cooperation and peaceful harmony amongst all people who lead a life of
+          balance, justice and mutual respect.
+        </p>
+        <div class="mt-6">
+          <a
+            href="/about-us/"
+            class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg"
+          >
+            Read More About Us
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Recent News & Announcements (combined section) */}
+  <NewsAnnouncementsSection />
+
+  {/* Donation Section */}
+  <DonationSection />
+
+  {/* Our Philosophy */}
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-12">Our Philosophy</h2>
+      <div class="flex flex-col sm:flex-row gap-8 max-w-5xl mx-auto">
+        <div class="text-center w-full">
+          <h3 class="text-2xl font-bold mb-2" style="color: rgb(233, 88, 35);">Knowledge</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">A critical component of every Muslims journey is knowledge.</p>
+        </div>
+        <div class="text-center w-full">
+          <h3 class="text-2xl font-bold mb-2" style="color: #db9e30;">Spirituality</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Ihsan was the way of our Messenger</p>
+        </div>
+        <div class="text-center w-full">
+          <h3 class="text-2xl font-bold mb-2" style="color: #57a68f;">Community</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">We pray together, we break our fast together, Islam is community</p>
+        </div>
+        <div class="text-center w-full">
+          <h3 class="text-2xl font-bold mb-2" style="color: #db9e30;">Service</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Being in service to others is the duty of every Muslim</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
