@@ -69,7 +69,7 @@ campaigns:
 
       We also need to renovate the Masjid and car park. The total for renovations, including carpets, wudhu area, prayer space and Minbar is $90,000 KYD
     active: true
-    goal: $250,000.00
+    goal: 250000
     raised: 45000
     message: '"Whoever builds a mosque for Allah, Allah will build for him a house
       in Paradise." - Prophet Muhammad (PBUH). Help us complete Phase 1 - only
