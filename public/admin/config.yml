@@ -1,6 +1,13 @@
 backend:
   name: git-gateway
   branch: main
+
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dhcyirzqz
+    api_key: STGVrTZhiI_ac6u8E7y9SGbRyAQ
+
 media_folder: public/img
 public_folder: /img
 collections:
