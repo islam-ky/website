@@ -59,30 +59,41 @@ const slider = {
     <div class="h-full bg-pattern-orange sm:px-4 md:px-12 w-full">
       <PrayerTimes />
     </div>
-    <div class="w-full bg-pattern-mosqueue md:px-12 sm:px-4">
-      <div class="px-6 h-full flex flex-col justify-center max-w-prose py-12">
-        <h2 class="text-2xl font-semibold mb-4 text-white">Welcome to Islamic Society of Cayman Islands</h2>
-        <p class="text-white/90 leading-relaxed">
-          The Islamic Society was established in 2000 to cater for the needs of
-          the Muslim society on the Cayman Islands. As well as a place of worship,
-          it is a community hub, providing education for children and adult as
-          well as social events and activities. A wide range of services are
-          offered here such as counselling and other social services. It also
-          presents the true teachings of Islam as a religion of tolerance,
-          cooperation and peaceful harmony amongst all people who lead a life of
-          balance, justice and mutual respect.
-        </p>
-        <div class="mt-6">
-          <a
-            href="/about-us/"
-            class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg"
-          >
-            Read More About Us
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
+    <div class="w-full relative overflow-hidden hidden sm:block">
+      <img
+        src="/img/full-masjid.jpg"
+        alt="Islamic Society of the Cayman Islands Masjid"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+    </div>
+  </section>
+
+  {/* About / Welcome Section */}
+  <section class="bg-pattern-mosqueue">
+    <div class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 text-white text-center">Welcome to Islamic Society of Cayman Islands</h2>
+      <p class="text-white/90 leading-relaxed text-center max-w-3xl mx-auto">
+        The Islamic Society was established in 2000 to cater for the needs of
+        the Muslim society on the Cayman Islands. As well as a place of worship,
+        it is a community hub, providing education for children and adult as
+        well as social events and activities. A wide range of services are
+        offered here such as counselling and other social services. It also
+        presents the true teachings of Islam as a religion of tolerance,
+        cooperation and peaceful harmony amongst all people who lead a life of
+        balance, justice and mutual respect.
+      </p>
+      <div class="mt-6 text-center">
+        <a
+          href="/about-us/"
+          class="inline-flex items-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg"
+        >
+          Read More About Us
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>
