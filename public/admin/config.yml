@@ -6,7 +6,7 @@ media_library:
   name: cloudinary
   config:
     cloud_name: dhcyirzqz
-    api_key: STGVrTZhiI_ac6u8E7y9SGbRyAQ
+    api_key: 828666819911395
 
 media_folder: public/img
 public_folder: /img
