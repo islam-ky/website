@@ -43,6 +43,6 @@ This weekly class is designed to help community members improve their Quran reci
 For schedule and enrollment information, please contact:
 
 **Phone**: [+1 (345) 329-2079](tel:+13453292079)  
-**Email**: [isci@candw.ky](mailto:isci@candw.ky)
+**Email**: [islamic.cayman@gmail.com](mailto:islamic.cayman@gmail.com)
 
 Take this opportunity to enhance your relationship with the Holy Quran through proper recitation!

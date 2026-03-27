@@ -32,6 +32,6 @@ All sisters are invited for a **weekly lecture** and opportunity for questions.
 Please contact the mosque for current timing and any schedule changes:
 
 **Phone**: [+1 (345) 329-2079](tel:+13453292079)  
-**Email**: [isci@candw.ky](mailto:isci@candw.ky)
+**Email**: [islamic.cayman@gmail.com](mailto:islamic.cayman@gmail.com)
 
 We look forward to seeing all our sisters at these beneficial sessions!

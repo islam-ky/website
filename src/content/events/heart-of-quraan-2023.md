@@ -42,6 +42,6 @@ Simply attend the Fajr prayer at the mosque and stay for the reminder session.
 
 **Contact for more information**:
 - **Phone**: [+1 (345) 329-2079](tel:+13453292079)
-- **Email**: [isci@candw.ky](mailto:isci@candw.ky)
+- **Email**: [islamic.cayman@gmail.com](mailto:islamic.cayman@gmail.com)
 
 Begin each day with the wisdom and guidance from the heart of the Holy Quran!
