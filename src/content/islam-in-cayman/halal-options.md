@@ -22,7 +22,7 @@ Here are some options for halal food on the Cayman Islands:
 
 **Restaurants and takeaways** –
 
-**Tasty Box -** The first muslim owned food truck which has promised to serve only Halal as long as the supply is available. Please confirm with chef **Afzal** or chef **Babu** before ordering.  Located on Walkers Road opposite Vampt Motor.
+**Tasty Box/Yummy Box -** The first muslim owned food truck which has promised to serve only Halal as long as the supply is available. Please confirm with chef **Afzal** or chef **Babu** before ordering.  Located on Walkers Road opposite Vampt Motor.
 
 **Southern Spice -**  This restaurant is partly owned by a Muslim brother and serves lunch and dinner. Be sure to confirm if halal chicken and meat is available. Bay Town Plaza West Bay Road
 
@@ -37,6 +37,10 @@ Here are some options for halal food on the Cayman Islands:
 **Steam and Spice -** A Nepalese food truck trying to provide Halal options for muslims.   Located close to town.
 
 **Food Daddy -** The chicken and beef options are Halal but prior notice may need to be given. Situated in Burke plaza near town.
+
+**Mr Istanbul** - A Turkish food truck which offers Halal chicken wraps, rice bowls and shawarma. **Please note that the beef is not Halal.**
+
+**Everest food hub -** A nepali and Indian food truck with ample seating providing chicken and mutton options.
 
 **Please note** - As far as we are aware, **Al Kabab** and **Yallah** are not Halaal, although they may at times utilize Halaal chicken.
 
@@ -58,7 +62,7 @@ Please note that not everything placed in the Halal section will be Halal as ite
 
 **Kirk Market.** Various meat is available. Recommended to phone in advance to order in. Beef from Australia is available in boneless cuts and minced.
 
-**Hurleys** - Lamb from New Zealand is available. 
+**Hurleys** - Lamb from New Zealand is available. Chicken and lamb sauasages are also available.
 
 **Quickmart** - Regularly stock Halal chicken as well as ready made frozen kababs and meals. 
 
